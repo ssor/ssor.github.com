@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 只有好的棋手才会走运
+title: 只有好的棋手才会走运（转载）
 category: opinion
 description: 《打造Facebook》读后感
 ---

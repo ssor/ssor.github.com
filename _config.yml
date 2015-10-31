@@ -1,11 +1,13 @@
-auto: true
+#auto: true
 
 markdown: rdiscount
-pygments: true
+# pygments: true
+highlighter: pygments
 paginate: 8
 permalink: /:title
+gems: [jekyll-paginate]
 
 title: blog.iot-top.com
 url: http://blog.iot-top.com
-feed: /atom.xml
+# feed: /atom.xml
 author_info: <a href="http://blog.iot-top.com/">Asher</a>

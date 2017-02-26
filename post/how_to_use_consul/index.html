@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consul在服务发现中的应用</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.18.1" />
+<meta property="og:title" content="Consul在服务发现中的应用" />
+<meta property="og:description" content="Consul的基本原理及其在服务发现中的使用
+
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="//localhost:1313/post/how_to_use_consul/" />
+
+
+<meta property="og:updated_time" content="2017-02-08T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="//localhost:1313/css/style.css" type="text/css" media="all" />
+<script type="text/javascript" src="//localhost:1313/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="//localhost:1313/js/css3-mediaqueries.js"></script>
+<![endif]-->
+</head>
+<body class="home blog mr-right-sb mr-mobile" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="//localhost:1313/" title="我思故我在" rel="home">
+										<h1 class="mr-header-title">我思故我在</h1>
+										<h2 class="mr-header-tagline">永远年轻, 永远浪漫</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+		
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="main-content mr-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">Consul在服务发现中的应用</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-02-08 00:00:00 &#43;0000 UTC">February 08, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/%e6%8a%80%e6%9c%af" rel="category">技术</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<p>Consul的基本原理及其在服务发现中的使用</p>
+
+<p></p>
+
+<h2 id="服务发现">服务发现</h2>
+
+<p>服务发现,通俗的讲,就是通过关键字查询特定的服务.</p>
+
+<h2 id="服务发现的意义">服务发现的意义</h2>
+
+<ul>
+<li><p>如果服务本身发生了变化, 只需要更新服务即可, 与服务相关的关键字不变, 因此服务的使用者不需要关心该变化</p></li>
+
+<li><p>服务进行升级后, 如果服务要求的参数不变(平滑升级可以做到), 服务使用者只需要用新的关键字替换之前的关键字即可</p></li>
+
+<li><p>同一个服务的多个版本可以同时存在, 使用者可以根据需求方便的切换版本</p></li>
+</ul>
+
+<h2 id="consul-是什么">Consul 是什么</h2>
+
+<p>Consul是 <a href="https://www.hashicorp.com/">HashiCorp</a>开发的用于服务发现的系统. 它的主要特性有:</p>
+
+<ul>
+<li>支持通过 DNS 和 HTTP 发现服务</li>
+<li>提供服务的健康检查</li>
+<li>键值存储</li>
+<li>多数据中心</li>
+</ul>
+
+<p>通过服务发现的方式为使用者提供服务, 稳定是最重要的考虑因素, Consul 的去中心化的多节点提供稳定的服务. 同时因为健康检查的存在, 可以保证服务的有效性.</p>
+
+<h2 id="consul-的部署">Consul 的部署</h2>
+
+<h3 id="说明">说明</h3>
+
+<p>每台服务器上至少有一个 Consul 的节点( Agent ), 节点有两种模式: 服务器模式和客户端模式.</p>
+
+<ul>
+<li><p>服务器模式提供服务注册和查找等功能, 是 Consul 去中心化的关键节点,推荐至少部署三个节点.</p></li>
+
+<li><p>客户端模式负责转发服务请求到服务器模式的节点.</p></li>
+</ul>
+
+<p>由于两种模式的节点负责功能的不同, 可以假设客户端模式的节点是稳定存在的, 而服务器模式的节点可能会异常退出.</p>
+
+<h3 id="安装">安装</h3>
+
+<p>根据系统<a href="https://www.consul.io/downloads.html">下载</a>合适的版本, 并解压至合适的目录.</p>
+
+<p>假设有4台服务器, IP分别为 <strong>172.16.1.34</strong>, <strong>172.16.1.35</strong>, <strong>172.16.1.37</strong>, <strong>172.16.1.69</strong></p>
+
+<p>我们将在 34, 35, 69 上启动服务器模式节点, 在37上启动客户端模式节点, 启动命令如下:</p>
+
+<h5 id="34">34</h5>
+
+<pre><code>./consul agent -server -bootstrap-expect=3 -node=agent34 -data-dir=./ &amp;
+</code></pre>
+
+<h6 id="35">35</h6>
+
+<pre><code> ./consul agent -server -bootstrap-expect=3 -node=agent35 -data-dir=./ &amp;  
+</code></pre>
+
+<h5 id="69">69</h5>
+
+<pre><code> ./consul agent -server -bootstrap-expect=3 -node=agent69 -data-dir=./ &amp;  
+</code></pre>
+
+<h5 id="37">37</h5>
+
+<pre><code> ./consul agent  -node=agent37 -retry-join=172.16.1.35 -data-dir=./ &amp; 
+</code></pre>
+
+<p>在35和34服务器上运行</p>
+
+<pre><code> ./consul join 172.16.1.69 
+</code></pre>
+
+<p>三个服务器模式节点将选出一个 leader, 服务启动完成.</p>
+
+<p>查看一下节点状态, 运行命令</p>
+
+<pre><code> ./consul members 
+</code></pre>
+
+<p>结果类似如下:</p>
+
+<pre><code>Node     Address           Status  Type    Build  Protocol  DC
+agent34  172.16.1.34:8301  alive   server  0.7.2  2         dc1
+agent35  172.16.1.35:8301  alive   server  0.7.2  2         dc1
+agent37  172.16.1.37:8301  alive   client  0.7.2  2         dc1
+agent69  172.16.1.69:8301  alive   server  0.7.2  2         dc1
+
+</code></pre>
+
+<h3 id="使用">使用</h3>
+
+<h5 id="使用http-api">使用HTTP API</h5>
+
+<ul>
+<li><p>注册服务 <a href="https://www.consul.io/docs/agent/http/agent.html#agent_service_register">/v1/agent/service/register</a></p></li>
+
+<li><p>查找服务 <a href="https://www.consul.io/docs/agent/http/health.html#health_service">/v1/health/service/<service></a></p></li>
+</ul>
+
+<h5 id="使用-sdk">使用 SDK</h5>
+
+<p>系统中使用 Consul 需要对其 HTTP API 进行封装, 因此可以直接使用官方封装的 Go 版的 SDK</p>
+
+<ul>
+<li><p>注册服务 参考<a href="https://github.com/ssor/consul_service_reg/blob/master/main.go">代码</a></p></li>
+
+<li><p>查找服务 参考<a href="https://github.com/ssor/consul_query_service_example/blob/master/main.go">代码</a></p></li>
+</ul>
+
+<h3 id="总结">总结</h3>
+
+<p>基本的使用方法介绍完毕, 下一步将对实际工程中的使用问题进行补充</p>
+		</div>
+		
+<div class="entry-tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="m4.73135 3.3795002q0-.5597-.39604-.9557-.39604-.3961-.95577-.3961-.55974 0-.95578.3961-.39604.396-.39604.9557 0 .5598.39604.9558.39604.3961.95578.3961.55973 0 .95577-.3961.39604-.396.39604-.9558zm11.26865 6.0832q0 .5596998-.39076.9504998l-5.18548 5.196q-.41188.3908-.9610504.3908-.55974 0-.9505-.3908l-7.5511496-7.5616998q-.40132-.3907-.68119-1.0666-.27987-.6759-.27987-1.2357v-4.3934q0-.54920004.40132-.95050004.40132-.4013.9505-.4013h4.39339q.55974 0 1.23565.2799.67591.2798 1.07723.6812l7.55115 7.54060004q.39076.4118.39076.961z"/></svg>
+	<ul>
+		<li><a href="/tags/consul/" rel="tag">Consul</a></li>
+		<li><a href="/tags/%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0/" rel="tag">服务发现</a></li>
+		
+	</ul>
+</div>
+	</article>
+	
+<div class="mr-author-box clearfix">
+    <figure class="mr-author-box-avatar">
+        <img alt="张全志 avatar" src="https://avatars0.githubusercontent.com/u/1879173?v=3&amp;s=460" class="avatar avatar-90 photo" height="90" width="90">
+    </figure>
+    <div class="mr-author-box-header">
+        <span class="mr-author-box-name">关于 张全志</span>
+    </div>
+    <div class="mr-author-box-bio">
+        程序员, 架构师, 产品经理, 立志自学成为一个懂音乐的人和摄影师. 我在北京.  https://github.com/ssor
+    </div>
+</div>
+
+	 
+<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+    
+    <div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+        <a href="//localhost:1313/post/do_not_use_logic_flow_chart/" rel="prev"><span>«Previous</span><p>不用逻辑流程图交流思想</p></a>
+    </div>
+      
+    <div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+        <a href="//localhost:1313/post/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E5%88%9D%E5%88%9B%E7%82%B9%E5%AD%90/" rel="next"><span>Next»</span><p>如何获取初创点子(Paul Graham)</p></a>
+    </div>
+     
+</nav>
+ 
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+	
+	
+<div class="mr-widget widget_recent_entries">
+	<h4 class="mr-widget-title"><span class="mr-widget-title-inner">Recent Posts</span></h4>
+	<ul>
+		
+		<li><a href="/post/rebuild_a_mongo_pool/">一个Mongo连接池库的介绍</a></li>
+		
+		<li><a href="/post/do_not_use_logic_flow_chart/">不用逻辑流程图交流思想</a></li>
+		
+		<li><a href="/post/how_to_use_consul/">Consul在服务发现中的应用</a></li>
+		
+		<li><a href="/post/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E5%88%9D%E5%88%9B%E7%82%B9%E5%AD%90/">如何获取初创点子(Paul Graham)</a></li>
+		
+		<li><a href="/post/role_of_software_enginerr_in_company/">软件工程师在公司中的定位</a></li>
+		
+	</ul>
+</div>
+
+
+	  
+<div class="mr-widget widget_categories">
+    <h4 class="mr-widget-title"><span class="mr-widget-title-inner">Categories</span></h4>
+    <ul>
+        
+        <li class="cat-item"><a href="//localhost:1313/categories/%e6%80%9d%e7%b4%a2">思索</a></li>
+        
+        <li class="cat-item"><a href="//localhost:1313/categories/%e6%8a%80%e6%9c%af">技术</a></li>
+        
+    </ul>
+</div>
+  
+	
+
+
+<div class="mr-widget widget_tag_cloud">
+	<h4 class="mr-widget-title"><span class="mr-widget-title-inner">Tags</span></h4>
+	<div class="tagcloud">
+		
+			<a href="//localhost:1313/tags/consul" class="tag-link" title="consul" style="font-size: 12px;">consul</a>
+		
+			<a href="//localhost:1313/tags/mongo" class="tag-link" title="mongo" style="font-size: 12px;">mongo</a>
+		
+			<a href="//localhost:1313/tags/paul-graham" class="tag-link" title="paul-graham" style="font-size: 12px;">paul-graham</a>
+		
+			<a href="//localhost:1313/tags/start-up" class="tag-link" title="start-up" style="font-size: 12px;">start-up</a>
+		
+			<a href="//localhost:1313/tags/%e5%88%9b%e4%b8%9a" class="tag-link" title="创业" style="font-size: 12px;">创业</a>
+		
+			<a href="//localhost:1313/tags/%e5%ba%93" class="tag-link" title="库" style="font-size: 12px;">库</a>
+		
+			<a href="//localhost:1313/tags/%e6%9c%8d%e5%8a%a1%e5%8f%91%e7%8e%b0" class="tag-link" title="服务发现" style="font-size: 12px;">服务发现</a>
+		
+			<a href="//localhost:1313/tags/%e6%b5%81%e7%a8%8b%e5%9b%be" class="tag-link" title="流程图" style="font-size: 12px;">流程图</a>
+		
+			<a href="//localhost:1313/tags/%e8%bd%af%e4%bb%b6%e5%b7%a5%e7%a8%8b%e5%b8%88" class="tag-link" title="软件工程师" style="font-size: 12px;">软件工程师</a>
+		
+			<a href="//localhost:1313/tags/%e9%80%bb%e8%be%91" class="tag-link" title="逻辑" style="font-size: 12px;">逻辑</a>
+		
+	</div>
+</div>
+
+
+
+</aside>
+</div>
+<div class="mr-copyright-wrap">
+    <div class="mr-container mr-container-inner clearfix">
+        <p class="mr-copyright">&copy; 2017 我思故我在. <a href="http://www.miitbeian.gov.cn/">京ICP备17008736号-1</a> </p>
+    </div>
+</div>
+</div>
+
+
+<script>
+    var navigation = responsiveNav(".menu", {
+        navClass: "menu--collapse",
+    });
+</script>
+
+<script data-no-instant>document.write('<script src="/livereload.js?port=1313&mindelay=10"></' + 'script>')</script></body>
+
+</html>

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>逻辑 on 我思故我在</title>
-    <link>http://ssor.github.io:1313/tags/%E9%80%BB%E8%BE%91/index.xml</link>
+    <link>http://ssor.github.io/tags/%E9%80%BB%E8%BE%91/index.xml</link>
     <description>Recent content in 逻辑 on 我思故我在</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://ssor.github.io:1313/tags/%E9%80%BB%E8%BE%91/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://ssor.github.io/tags/%E9%80%BB%E8%BE%91/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>不用逻辑流程图交流思想</title>
-      <link>http://ssor.github.io:1313/post/do_not_use_logic_flow_chart/</link>
+      <link>http://ssor.github.io/post/do_not_use_logic_flow_chart/</link>
       <pubDate>Fri, 10 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://ssor.github.io:1313/post/do_not_use_logic_flow_chart/</guid>
+      <guid>http://ssor.github.io/post/do_not_use_logic_flow_chart/</guid>
       <description>&lt;p&gt;逻辑流程图是人与人之间交流的障碍&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
@@ -22,7 +22,7 @@
 
 &lt;p&gt;用图表示的算法就是流程图。流程图是用一些图框来表示各种类型的操作，在框内写出各个步骤，然后用带箭头的线把它们连接起来，以表示执行的先后顺序。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ssor.github.io:1313/img/logic_flow.gif&#34; alt=&#34;流程图样例&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://ssor.github.io/img/logic_flow.gif&#34; alt=&#34;流程图样例&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;为什么不用逻辑流程图&#34;&gt;为什么不用逻辑流程图&lt;/h2&gt;
 

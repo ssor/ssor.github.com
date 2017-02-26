@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mongo on 我思故我在</title>
-    <link>http://ssor.github.io:1313/tags/mongo/index.xml</link>
+    <link>http://ssor.github.io/tags/mongo/index.xml</link>
     <description>Recent content in Mongo on 我思故我在</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://ssor.github.io:1313/tags/mongo/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://ssor.github.io/tags/mongo/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>一个Mongo连接池库的介绍</title>
-      <link>http://ssor.github.io:1313/post/rebuild_a_mongo_pool/</link>
+      <link>http://ssor.github.io/post/rebuild_a_mongo_pool/</link>
       <pubDate>Sat, 11 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://ssor.github.io:1313/post/rebuild_a_mongo_pool/</guid>
+      <guid>http://ssor.github.io/post/rebuild_a_mongo_pool/</guid>
       <description>&lt;p&gt;自己写了一个Mongo连接池, 已用在生产中, 算是重复制造轮子&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;

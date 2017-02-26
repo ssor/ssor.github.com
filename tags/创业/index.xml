@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>创业 on 我思故我在</title>
-    <link>//localhost:1313/tags/%E5%88%9B%E4%B8%9A/index.xml</link>
+    <link>http://ssor.github.io:1313/tags/%E5%88%9B%E4%B8%9A/index.xml</link>
     <description>Recent content in 创业 on 我思故我在</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="//localhost:1313/tags/%E5%88%9B%E4%B8%9A/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://ssor.github.io:1313/tags/%E5%88%9B%E4%B8%9A/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>如何获取初创点子(Paul Graham)</title>
-      <link>//localhost:1313/post/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E5%88%9D%E5%88%9B%E7%82%B9%E5%AD%90/</link>
+      <link>http://ssor.github.io:1313/post/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E5%88%9D%E5%88%9B%E7%82%B9%E5%AD%90/</link>
       <pubDate>Sun, 12 Jul 2015 20:45:58 +0800</pubDate>
       
-      <guid>//localhost:1313/post/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E5%88%9D%E5%88%9B%E7%82%B9%E5%AD%90/</guid>
+      <guid>http://ssor.github.io:1313/post/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E5%88%9D%E5%88%9B%E7%82%B9%E5%AD%90/</guid>
       <description>&lt;p&gt;讲述了作者对于如何获取正确的创业点子的思路.&lt;br /&gt;
 (翻译:张全志, 原文链接: &lt;a href=&#34;http://paulgraham.com/startupideas.html&#34;&gt;http://paulgraham.com/startupideas.html&lt;/a&gt;)&lt;/p&gt;
 

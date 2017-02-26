@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on 我思故我在</title>
-    <link>//localhost:1313/post/index.xml</link>
+    <link>http://ssor.github.io:1313/post/index.xml</link>
     <description>Recent content in Posts on 我思故我在</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 11 Feb 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="//localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://ssor.github.io:1313/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>一个Mongo连接池库的介绍</title>
-      <link>//localhost:1313/post/rebuild_a_mongo_pool/</link>
+      <link>http://ssor.github.io:1313/post/rebuild_a_mongo_pool/</link>
       <pubDate>Sat, 11 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:1313/post/rebuild_a_mongo_pool/</guid>
+      <guid>http://ssor.github.io:1313/post/rebuild_a_mongo_pool/</guid>
       <description>&lt;p&gt;自己写了一个Mongo连接池, 已用在生产中, 算是重复制造轮子&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
@@ -63,10 +63,10 @@
     
     <item>
       <title>不用逻辑流程图交流思想</title>
-      <link>//localhost:1313/post/do_not_use_logic_flow_chart/</link>
+      <link>http://ssor.github.io:1313/post/do_not_use_logic_flow_chart/</link>
       <pubDate>Fri, 10 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:1313/post/do_not_use_logic_flow_chart/</guid>
+      <guid>http://ssor.github.io:1313/post/do_not_use_logic_flow_chart/</guid>
       <description>&lt;p&gt;逻辑流程图是人与人之间交流的障碍&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
@@ -75,7 +75,7 @@
 
 &lt;p&gt;用图表示的算法就是流程图。流程图是用一些图框来表示各种类型的操作，在框内写出各个步骤，然后用带箭头的线把它们连接起来，以表示执行的先后顺序。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;//localhost:1313/img/logic_flow.gif&#34; alt=&#34;流程图样例&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://ssor.github.io:1313/img/logic_flow.gif&#34; alt=&#34;流程图样例&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;为什么不用逻辑流程图&#34;&gt;为什么不用逻辑流程图&lt;/h2&gt;
 
@@ -118,10 +118,10 @@
     
     <item>
       <title>Consul在服务发现中的应用</title>
-      <link>//localhost:1313/post/how_to_use_consul/</link>
+      <link>http://ssor.github.io:1313/post/how_to_use_consul/</link>
       <pubDate>Wed, 08 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:1313/post/how_to_use_consul/</guid>
+      <guid>http://ssor.github.io:1313/post/how_to_use_consul/</guid>
       <description>&lt;p&gt;Consul的基本原理及其在服务发现中的使用&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
@@ -244,10 +244,10 @@ agent69  172.16.1.69:8301  alive   server  0.7.2  2         dc1
     
     <item>
       <title>如何获取初创点子(Paul Graham)</title>
-      <link>//localhost:1313/post/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E5%88%9D%E5%88%9B%E7%82%B9%E5%AD%90/</link>
+      <link>http://ssor.github.io:1313/post/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E5%88%9D%E5%88%9B%E7%82%B9%E5%AD%90/</link>
       <pubDate>Sun, 12 Jul 2015 20:45:58 +0800</pubDate>
       
-      <guid>//localhost:1313/post/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E5%88%9D%E5%88%9B%E7%82%B9%E5%AD%90/</guid>
+      <guid>http://ssor.github.io:1313/post/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E5%88%9D%E5%88%9B%E7%82%B9%E5%AD%90/</guid>
       <description>&lt;p&gt;讲述了作者对于如何获取正确的创业点子的思路.&lt;br /&gt;
 (翻译:张全志, 原文链接: &lt;a href=&#34;http://paulgraham.com/startupideas.html&#34;&gt;http://paulgraham.com/startupideas.html&lt;/a&gt;)&lt;/p&gt;
 
@@ -495,10 +495,10 @@ agent69  172.16.1.69:8301  alive   server  0.7.2  2         dc1
     
     <item>
       <title>软件工程师在公司中的定位</title>
-      <link>//localhost:1313/post/role_of_software_enginerr_in_company/</link>
+      <link>http://ssor.github.io:1313/post/role_of_software_enginerr_in_company/</link>
       <pubDate>Mon, 13 May 2013 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:1313/post/role_of_software_enginerr_in_company/</guid>
+      <guid>http://ssor.github.io:1313/post/role_of_software_enginerr_in_company/</guid>
       <description>&lt;p&gt;软件工程师应该成为公司的技术决策者&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小书包系统架构演进</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.18.1" />
+<meta property="og:title" content="小书包系统架构演进" />
+<meta property="og:description" content="介绍小书包的架构历史及发展方向
+
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://ssor.github.io/post/architechure_design_dyxsb/" />
+
+
+<meta property="og:updated_time" content="2017-03-05T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="http://ssor.github.io/css/style.css" type="text/css" media="all" />
+<script type="text/javascript" src="http://ssor.github.io/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="http://ssor.github.io/js/css3-mediaqueries.js"></script>
+<![endif]-->
+</head>
+<body class="home blog mr-right-sb mr-mobile" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="http://ssor.github.io/" title="我思故我在" rel="home">
+										<h1 class="mr-header-title">我思故我在</h1>
+										<h2 class="mr-header-tagline">永远年轻, 永远浪漫</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+		
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="main-content mr-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">小书包系统架构演进</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-03-05 00:00:00 &#43;0000 UTC">March 05, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/%e6%8a%80%e6%9c%af" rel="category">技术</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<p>介绍小书包的架构历史及发展方向</p>
+
+<p></p>
+
+<h2 id="系统组成">系统组成</h2>
+
+<p>小书包整个系统的组成包含三部分:</p>
+
+<ul>
+<li>后台服务</li>
+<li>后台管理系统,</li>
+<li>终端应用( IOS 和 安卓)</li>
+</ul>
+
+<p>写下第一行代码的时候, 也是小书包背负最多紧急任务的时候. 在这之前已经开发了一个版本,  对新版本的要求是:</p>
+
+<ul>
+<li><p>克隆全部第一个版本所具有的功能(即使是错的)</p></li>
+
+<li><p>在之前功能的基础上, 开发更高级的功能</p></li>
+</ul>
+
+<p>但是面对需求, 这个版本没有办法完成任务:</p>
+
+<ul>
+<li><p>之前的版本基于 Java 技术栈, 现在的研发没有这方面的经验, 而且剩余的时间也不够转型</p></li>
+
+<li><p>之前的代码在交接时缺少关键部分, 没法运行, 因某种原因不能与之前开发团队沟通</p></li>
+
+<li><p>经过评估, 在原来代码的基础上进行修补和改进, 成本比重新开发还要高</p></li>
+</ul>
+
+<p>决定重新开发后, 选择了 Go 作为后台主要开发语言, 原因如<a href="/post/why_use_golang_for_backend/">这篇文章</a>所说, 另外还有:</p>
+
+<ul>
+<li><p>我自己对Go 开发有很长时间的经验, 遇到问题能够自行解决</p></li>
+
+<li><p>语言简单, 有经验的程序员上手非常快</p></li>
+
+<li><p>Go 的运行效率也够高</p></li>
+</ul>
+
+<h2 id="主服务">主服务</h2>
+
+<h3 id="单例模式">单例模式</h3>
+
+<p>确定采用的技术后, 面临的需求如下:</p>
+
+<ul>
+<li>开发要快, 但是功能模型还要超越之前的版本, 只有大约三个月的时间</li>
+<li>系统效率要足够, 可能有几十万人同时在线</li>
+</ul>
+
+<p>为了满足这两个需求, 系统第一版采用了内存模型, 在开发速度和性能的要求都达到了需求, 系统如期上线.</p>
+
+<h3 id="动静分离">动静分离</h3>
+
+<p>之前版本将所有的请求揽于一身, 包括静态资源的处理, 这部分消耗了系统很多的资源, 可以由成熟的方案做专门的优化处理.</p>
+
+<h4 id="1-web静态资源文件">1. Web静态资源文件</h4>
+
+<p>静态文件分离的第一步就是将Web所需的静态资源简单的分离出来, 以方便对静态文件的请求进行单独处理.</p>
+
+<p>通过将静态文件存放在单独的服务器上, 并通过 nginx 作为文件服务器后, 完成了初步的改造, 这样做的目的有两个:</p>
+
+<ol>
+<li><p>网页静态资源请求不再有主服务处理</p></li>
+
+<li><p>对静态文件服务进行了测试, 为接下来的系统静态数据分离做出可行性测试</p></li>
+</ol>
+
+<h4 id="2-静态数据文件">2. 静态数据文件</h4>
+
+<p>系统运行本身也会产生很多的静态文件数据,  数据量增大后, 也会极大影响系统资源的分配. 这些服务相对来说复杂了许多, 无法通过简单的文件拆分完成.</p>
+
+<p>举例来说, 系统对图书的服务包含了三个方面:</p>
+
+<ul>
+<li>上传图书文件</li>
+<li>对上传的图书文件进行处理, 例如加密和修改部分文件</li>
+<li>向终端提供下载图书文件服务</li>
+</ul>
+
+<p>之前三个方面的服务全部由系统本身处理, 流程相对简单. 为了将图书文件作为静态文件单独处理, 新的流程将上传图书的流程分为两步:</p>
+
+<ol>
+<li><p>将图书文件本身上传到静态文件服务器, 并进行相应的逻辑处理</p></li>
+
+<li><p>将上传成功的标记作为参数提交到系统主服务, 主服务只负责数据处理</p></li>
+</ol>
+
+<p>为了完成第一个流程, 需要创建新的上传服务, 该服务接收文件的上传, 将文件处理后交由文件服务器提供文件下载服务, 并返回文件路径信息.</p>
+
+<p>文件信息之后会被提交到主服务, 并由主服务分发给终端 App, 终端 App 最终能够获取到最新正确的文件地址, 从而整个服务流程完成.</p>
+
+<p>完成了图书文件的上传流程的改造后, 将用到的上传服务进行简单的扩展, 就可以将包括图书封面, 文章阅读等最终以静态文件存在的流程全部进行改造, 包括在线聊天(后面会专门讲到)这个对文件上传需求量最高的系统服务, 这样的结果就是:</p>
+
+<ul>
+<li><p>系统主服务的负担进一步减轻</p></li>
+
+<li><p>类似服务统一处理, 专门优化</p></li>
+
+<li><p>使用上传服务的新功能的开发复杂度降低</p></li>
+</ul>
+
+<h3 id="系统模块化">系统模块化</h3>
+
+<p>尽管静态文件相关的服务被剥离出来, 但是系统主服务还是太过庞大, 造成的影响包括:</p>
+
+<ul>
+<li><p>所有功能模块的集中, 导致开发修改任何功能都是对主服务的改动, 任何的微小 bug 都会导致主服务受影响</p></li>
+
+<li><p>对于新成员, 无论开发功能还是修改 bug, 设计的代码范围大, 掌握系统设计的速度也比较慢</p></li>
+
+<li><p>由于所有的资源都在同一个区域内, 功能开发很容易形成依赖, 如果开发成员的模块化意识差, 很容易写出混乱的代码, 给维护带来较大麻烦</p></li>
+</ul>
+
+<p>为了解决这些问题, 需要逐渐的将主服务中的功能进行拆分, 最终形成独立的功能服务.</p>
+
+<h3 id="大前后端的分离">大前后端的分离</h3>
+
+<p>一直以来, 后台管理系统与后台的数据服务是集合在主服务中的, 这样导致的问题就是:</p>
+
+<ul>
+<li><p>即使业务需求导致的页面变化非常微小, 也需要对主服务进行升级</p></li>
+
+<li><p>前端开发需要搭建和主服务同样的系统才能进行开发, 增大了开发难度</p></li>
+</ul>
+
+<p>为了解决这两个问题, 对系统主服务中的前端部分拆分成单独的前端系统, 通过 API 的方式调用数据</p>
+
+<h3 id="功能模块的拆分">功能模块的拆分</h3>
+
+<p>功能服务独立化时面对的问题主要是:</p>
+
+<ul>
+<li><p>如何确定功能的边界</p></li>
+
+<li><p>之前同一个服务进程内的依赖问题如何解决</p></li>
+
+<li><p>模块之间的数据如何同步</p></li>
+</ul>
+
+<h4 id="1-功能边界的确定">1.功能边界的确定</h4>
+
+<p>这个需要从两个方面考虑:</p>
+
+<ul>
+<li>总结出业务特点, 渐渐划清了模块的大体边界</li>
+<li>根据业务的变化及时调整</li>
+</ul>
+
+<h4 id="2-服务的数据依赖与同步">2.服务的数据依赖与同步</h4>
+
+<p>将原来服务切分进行拆分, 之前简单的在内存中查找数据就可以完成的操作, 现在划分为多个流程的组合, 很多问题就会产生, 比如说中间出错怎么处理, 性能降低较大.</p>
+
+<p>直觉的处理方案就是技术替代. 这方面有很多技术上的解决方案, 比如 内部 Restful API, RPC 等等, 用这些技术手段替代之前的内存查找, 最起码从表面上完成了拆分.</p>
+
+<p>但是, 如果解决只是这个思路进行拆分, 我觉得有很大的浪费. 因为模块的划分, 本来就是从底层逼迫架构设计者考虑之前数据调用的合理性. 如果能够通过模块的划分, 将原来隐藏的问题暴露出来, 通过重新思考, 架构方案的改进从而对整个系统加以改进, 那对于系统的清晰和可维护性一定是个巨大的进步.</p>
+
+<p>对于模块独立后, 对于必须依赖的数据的同步, 我们采用的方案是中间件事件提醒, 然后从数据库查询同步的方案. 具体来说, 每一个模块都有自己的缓存数据, 每个模块都可能具有读和写的操作, 如果发生写操作, 那么在数据成功写入到数据库完成持久化以后, 需要发送一个对该数据发生变化的事件提醒到中间件, 依赖该数据的模块通过订阅该事件获得提醒, 之后通过查询数据库中的相关数据, 更新缓存数据.</p>
+
+<h4 id="3-成果">3.成果</h4>
+
+<p>系统模块化之后, 不仅解决了之前存在的问题, 还额外得到了另外一些好处:</p>
+
+<ul>
+<li><p>由于模块之间的数据依赖, 促使系统不断的向无状态, 内聚的方向进化, 系统之间的耦合性降低, 整个系统更加清晰, 为之后功能的开发提供了坚实的基础</p></li>
+
+<li><p>由于每个模块负责管理自己的数据, 但整个系统对外提供的 API 需要提供跨模块的数据, 促使缓存层的单独设计, 同时将终端和后台的 API 进行了分类处理</p></li>
+</ul>
+
+<h3 id="系统的无缝升级">系统的无缝升级</h3>
+
+<p>好长时间以来, 系统的升级维护工作都需要暂停服务, 暂停服务从公司业务管理制度上需要经历一系列的流程, 流程的繁杂会阻碍功能的及时升级, 这样会造成很多问题:</p>
+
+<ul>
+<li><p>功能不能快速上线, 会造成功能的堆积, 堆积增多与升级出错的概率成正比, 导致系统升级出现意外的可能性增大</p></li>
+
+<li><p>功能不能及时上线, 功能的反馈及时性降低, 不能及时跟进客户真正需求, 时间成本增大</p></li>
+
+<li><p>功能不能上线, 依据该功能的后续开发工作不确定性增大, 开发成本升高</p></li>
+
+<li><p>体验差</p></li>
+</ul>
+
+<p>造成这个问题的主要原因在于系统的缓存使用的是内存, 功能升级需要重新加载数据, 而多个实例内存级别实时数据同步的成本较高.</p>
+
+<p>为了解决这个问题, 系统模块中的缓存逐渐用 redis 替代, 通过将缓存与功能分离, 可以同时启动同一模块的多个实例, 通过负载均衡的配置, 可以逐步用升级版本的实例代替就实例, 实现无缝升级.</p>
+
+<p>另外一个好处就是, 再将模块缓存与功能分离后, 顺带实现了系统的横向扩展, 系统的承载量不再是问题</p>
+
+<h3 id="向数据平台的演进">向数据平台的演进</h3>
+
+<p>经过之前的改进, 整个系统在业务上基本不存在大的问题. 随着系统的增大, 和第三方资源的对接成为主要考虑的方向, 不仅包括接入第三方的数据资源, 也包括开发资源, 如何向第三方开放数据接口, 增大系统的功能扩展能力摆在面前.</p>
+
+<p>解决思路是整个系统向平台化演进. 将内部的各个模块在现有的业务层和数据层的基础上, 从纵向上进一步细化拆分, 业务层分为基础业务和组合业务, 数据层分为业务数据和基础数据, 每个层次上开放合适的 API服务, 第三方的开发能力在服务基础上, 就可以快速得以实现.</p>
+		</div>
+		
+<div class="entry-tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="m4.73135 3.3795002q0-.5597-.39604-.9557-.39604-.3961-.95577-.3961-.55974 0-.95578.3961-.39604.396-.39604.9557 0 .5598.39604.9558.39604.3961.95578.3961.55973 0 .95577-.3961.39604-.396.39604-.9558zm11.26865 6.0832q0 .5596998-.39076.9504998l-5.18548 5.196q-.41188.3908-.9610504.3908-.55974 0-.9505-.3908l-7.5511496-7.5616998q-.40132-.3907-.68119-1.0666-.27987-.6759-.27987-1.2357v-4.3934q0-.54920004.40132-.95050004.40132-.4013.9505-.4013h4.39339q.55974 0 1.23565.2799.67591.2798 1.07723.6812l7.55115 7.54060004q.39076.4118.39076.961z"/></svg>
+	<ul>
+		<li><a href="/tags/%E6%9E%B6%E6%9E%84/" rel="tag">架构</a></li>
+		
+	</ul>
+</div>
+	</article>
+	
+<div class="mr-author-box clearfix">
+    <figure class="mr-author-box-avatar">
+        <img alt="张全志 avatar" src="https://avatars0.githubusercontent.com/u/1879173?v=3&amp;s=460" class="avatar avatar-90 photo" height="90" width="90">
+    </figure>
+    <div class="mr-author-box-header">
+        <span class="mr-author-box-name">关于 张全志</span>
+    </div>
+    <div class="mr-author-box-bio">
+        程序员, 架构师, 产品经理, 立志自学成为一个懂音乐的人和摄影师. 我在北京.  https://github.com/ssor
+    </div>
+</div>
+
+	 
+<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+     
+    <div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+        <a href="http://ssor.github.io/post/rebuild_a_mongo_pool/" rel="next"><span>Next»</span><p>Mongo 数据库的合理使用</p></a>
+    </div>
+     
+</nav>
+ 
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+	
+	
+<div class="mr-widget widget_recent_entries">
+	<h4 class="mr-widget-title"><span class="mr-widget-title-inner">Recent Posts</span></h4>
+	<ul>
+		
+		<li><a href="/post/architechure_design_dyxsb/">小书包系统架构演进</a></li>
+		
+		<li><a href="/post/rebuild_a_mongo_pool/">Mongo 数据库的合理使用</a></li>
+		
+		<li><a href="/post/do_not_use_logic_flow_chart/">不用逻辑流程图交流思想</a></li>
+		
+		<li><a href="/post/how_to_use_consul/">Consul在服务发现中的应用</a></li>
+		
+		<li><a href="/post/architechure_desigin_of_chat/">小书包在线聊天系统架构演进</a></li>
+		
+		<li><a href="/post/how_to_meditation/">如何冥想</a></li>
+		
+		<li><a href="/post/why_use_golang_for_backend/">后台开发选择了 Go 语言</a></li>
+		
+		<li><a href="/post/how_to_get_startup_ideas/">如何获取初创点子(Paul Graham)</a></li>
+		
+		<li><a href="/post/role_of_software_enginerr_in_company/">软件工程师在公司中的定位</a></li>
+		
+	</ul>
+</div>
+
+
+	  
+<div class="mr-widget widget_categories">
+    <h4 class="mr-widget-title"><span class="mr-widget-title-inner">Categories</span></h4>
+    <ul>
+        
+        <li class="cat-item"><a href="http://ssor.github.io/categories/%e6%80%9d%e7%b4%a2">思索</a></li>
+        
+        <li class="cat-item"><a href="http://ssor.github.io/categories/%e6%8a%80%e6%9c%af">技术</a></li>
+        
+    </ul>
+</div>
+  
+	
+
+
+<div class="mr-widget widget_tag_cloud">
+	<h4 class="mr-widget-title"><span class="mr-widget-title-inner">Tags</span></h4>
+	<div class="tagcloud">
+		
+			<a href="http://ssor.github.io/tags/consul" class="tag-link" title="consul" style="font-size: 12px;">consul</a>
+		
+			<a href="http://ssor.github.io/tags/go" class="tag-link" title="go" style="font-size: 12px;">go</a>
+		
+			<a href="http://ssor.github.io/tags/meditation" class="tag-link" title="meditation" style="font-size: 12px;">meditation</a>
+		
+			<a href="http://ssor.github.io/tags/mongo" class="tag-link" title="mongo" style="font-size: 12px;">mongo</a>
+		
+			<a href="http://ssor.github.io/tags/paul-graham" class="tag-link" title="paul-graham" style="font-size: 12px;">paul-graham</a>
+		
+			<a href="http://ssor.github.io/tags/start-up" class="tag-link" title="start-up" style="font-size: 12px;">start-up</a>
+		
+			<a href="http://ssor.github.io/tags/%e5%86%a5%e6%83%b3" class="tag-link" title="冥想" style="font-size: 12px;">冥想</a>
+		
+			<a href="http://ssor.github.io/tags/%e5%88%9b%e4%b8%9a" class="tag-link" title="创业" style="font-size: 12px;">创业</a>
+		
+			<a href="http://ssor.github.io/tags/%e5%ba%93" class="tag-link" title="库" style="font-size: 12px;">库</a>
+		
+			<a href="http://ssor.github.io/tags/%e6%9c%8d%e5%8a%a1%e5%8f%91%e7%8e%b0" class="tag-link" title="服务发现" style="font-size: 12px;">服务发现</a>
+		
+			<a href="http://ssor.github.io/tags/%e6%9e%b6%e6%9e%84" class="tag-link" title="架构" style="font-size: 12px;">架构</a>
+		
+			<a href="http://ssor.github.io/tags/%e6%b5%81%e7%a8%8b%e5%9b%be" class="tag-link" title="流程图" style="font-size: 12px;">流程图</a>
+		
+			<a href="http://ssor.github.io/tags/%e8%bd%af%e4%bb%b6%e5%b7%a5%e7%a8%8b%e5%b8%88" class="tag-link" title="软件工程师" style="font-size: 12px;">软件工程师</a>
+		
+			<a href="http://ssor.github.io/tags/%e9%80%bb%e8%be%91" class="tag-link" title="逻辑" style="font-size: 12px;">逻辑</a>
+		
+	</div>
+</div>
+
+
+
+</aside>
+</div>
+<div class="mr-copyright-wrap">
+    <div class="mr-container mr-container-inner clearfix">
+        <p class="mr-copyright">&copy; 2017 我思故我在. <a href="http://www.miitbeian.gov.cn/">京ICP备17008736号-1</a> </p>
+    </div>
+</div>
+</div>
+
+
+<script>
+    var navigation = responsiveNav(".menu", {
+        navClass: "menu--collapse",
+    });
+</script>
+
+</body>
+
+</html>

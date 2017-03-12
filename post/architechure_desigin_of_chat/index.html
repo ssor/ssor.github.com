@@ -3,17 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mongo 数据库的合理使用</title>
+<title>小书包在线聊天系统架构演进</title>
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.18.1" />
-<meta property="og:title" content="Mongo 数据库的合理使用" />
-<meta property="og:description" content="如何防止 Mongo 数据库因为连接数过高导致异常
+<meta property="og:title" content="小书包在线聊天系统架构演进" />
+<meta property="og:description" content="介绍小书包聊天系统的架构历史及发展方向
+
 " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://ssor.github.io/post/rebuild_a_mongo_pool/" />
+<meta property="og:url" content="http://ssor.github.io/post/architechure_desigin_of_chat/" />
 
 
-<meta property="og:updated_time" content="2017-02-11T00:00:00&#43;00:00"/>
+<meta property="og:updated_time" content="2016-10-05T00:00:00&#43;00:00"/>
 
 
 
@@ -65,10 +66,10 @@
 <div class="main-content mr-content" role="main" itemprop="mainContentOfPage">
 	<article class="post">
 		<header class="entry-header clearfix">
-			<h1 class="entry-title">Mongo 数据库的合理使用</h1>
+			<h1 class="entry-title">小书包在线聊天系统架构演进</h1>
 			<p class="mr-meta entry-meta">
 				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-				<time class="entry-meta-date updated" datetime="2017-02-11 00:00:00 &#43;0000 UTC">February 11, 2017</time>
+				<time class="entry-meta-date updated" datetime="2016-10-05 00:00:00 &#43;0000 UTC">October 05, 2016</time>
 				<span class="entry-meta-categories">
 					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 					<a class="meta-categories" href="/categories/%e6%8a%80%e6%9c%af" rel="category">技术</a></span>
@@ -76,81 +77,90 @@
 		</header>
 		<div class="entry-content clearfix">
 			
-			<p>如何防止 Mongo 数据库因为连接数过高导致异常
-</p>
+			<p>介绍小书包聊天系统的架构历史及发展方向</p>
 
-<h1 id="思路">思路</h1>
+<p></p>
 
-<p>防止 Mongo 连接数过高需要解决两个问题:
-1. 如何限制应用使用的连接数
-2. 应用如何合理使用有限的连接</p>
+<h2 id="技术方案">技术方案</h2>
 
-<p>对于第一个问题, 现在的处理方案是使用连接池, 在连接池内设定最高数量的连接, 重复利用而不随意增多, 从而从整体上保证了连接的数量</p>
+<p>开发在线聊天功能考虑的第一个问题是: 能不能用第三方的系统?</p>
 
-<p>但是, 如果之前的应用中使用连接的方式根本没有考虑连接资源有限的话, 改造起来相对麻烦一些. 很多的应用对连接数使用数量来源于业务访问量, 新增一个访问量, 则简单的新创建一个连接, 等于将业务的访问压力转嫁到数据库上, 为系统的稳定埋下了隐患. 因此, 对于应用内使用有限连接的方式, 从两个角度解决:
-1. 强制使用有限连接, 如果因为连接数暂时不够导致业务无法及时处理, 将业务推迟, 由业务发起方重新请求
-2. 对于无法推迟的业务处理, 将请求缓存, 使用有限连接排队处理请求</p>
-
-<h1 id="基本连接池">基本连接池</h1>
-
-<h2 id="连接池的好处">连接池的好处</h2>
+<p>第三方的系统已经有成熟的商业解决方案, 自行开发成本很高. 但问题在于:</p>
 
 <ul>
-<li>连接 Mongo 时, 如果连接太多, 会导致数据库因并发连接太多而崩溃;</li>
-<li>如果 Mongo 采用了 Primary 和 Secondary 模式, 会导致各个实例的角色不断转换, 从而导致数据不停的在各个实例之间同步, 不仅造成了服务器的负担, 而且导致数据库出错的概率急剧增大, 甚至导致整个系统的运行出错.</li>
+<li>如果经过第三方系统, 数据安全方面能不能得到保证</li>
+<li>如果要对聊天内容进行限制, 第三方系统是否能够做到</li>
 </ul>
 
-<p>为了解决这个问题, 就要限制各个应用连接 Mongo 的连接数量, 应用于<a href="https://github.com/ssor/mongopool">生产环境的库</a>, 基于 Go 开发</p>
+<p>经过调研, 发现上面两个问题基本很难解决.</p>
 
-<h2 id="支持特性">支持特性</h2>
+<p>那么能不能用开源的系统? 有许多具有很多应用案例的组合可以选择. 但是经过研究发现, 这些系统在部署和维护上也需要较大的投入, 再结合我们的技术选型和初期的产品需求, 发现自己开发一个反而成本较低, 而且后期也可以按照业务需求灵活改动.</p>
+
+<h3 id="单例">单例</h3>
+
+<p>初期的产品需求比较简单, 只要登录的人能够在群内互相发送消息即可, 不需要群的管理和消息的持久化</p>
+
+<p>所以第一版的在线聊天经过几天的开发就可以使用了. 它的功能包括:</p>
+
+<ul>
+<li>用户上线时, 访问服务, 服务根据用户属性, 将其分配到预设的群中</li>
+<li>用户发送消息, 该消息会通过 websocket 转发给群内的其他成员</li>
+<li>支持文字, 图片和语音</li>
+</ul>
+
+<p>第一版在一台服务器上满足了十万人左右的聊天需求</p>
+
+<h3 id="多节点">多节点</h3>
+
+<p>用户量的增多对系统提出了更多的挑战, 主要有以下几个:</p>
+
+<ul>
+<li>用户量增大, 单个服务器难以承载</li>
+<li>登录过程较慢, 系统升级造成服务的中断</li>
+</ul>
+
+<p>为了解决这些问题, 系统在架构上进行以下的改进:</p>
 
 <ol>
-<li>限制了应用并发连接数量</li>
-<li>数据库断线自动重连</li>
+<li>预先创建群</li>
+<li>分配服务器节点和聊天功能进行模块上的分离, 分别由不同的服务负责, 各个模块可以单独部署</li>
+<li>用户登录采用两段式, 即先获取分配服务器节点, 通过分配服务器获取登录节点, 最终在分配的登录服务器节点上登录</li>
 </ol>
 
-<h2 id="如何查看连接数量">如何查看连接数量</h2>
+<p>改造完成后, 用户量承载方面已经没有问题, 由于多节点的支持, 用户登录也较为快速, 基本解决问题</p>
 
-<p>linux :</p>
+<h3 id="高可用">高可用</h3>
 
-<pre><code>sudo netstat -apn | grep 27107
-</code></pre>
+<p>随着用户分布范围的扩大, 遇到的网络情况变得复杂起来; 同时对服务的可用性也提出了更高的要求. 这种情况下需要解决的问题有:</p>
 
-<p>macOS</p>
+<ul>
+<li>服务器分配节点的服务器失效</li>
+<li>终端对外网络有限制, 无法连接到服务器</li>
+<li>用户分配的节点服务器失效或者系统升级重启</li>
+</ul>
 
-<pre><code>sudo lsof -nP -iTCP  | grep mongo
-</code></pre>
+<p>为了解决上述问题, 系统进行了如下改进:</p>
 
-<h2 id="连接池原理">连接池原理</h2>
+<ul>
+<li><p>客户端路由和分配服务器多点
+&gt; 客户端进行第一段的登录请求时, 获取的将会是一组分配服务器地址, 客户端轮询服务器列表, 其中一个失效不会阻碍登录的进行</p></li>
 
-<h3 id="数量限制">数量限制</h3>
+<li><p>用户群在各个聊天节点的自动迁移, 解决了节点升级和失效的问题</p></li>
+</ul>
 
-<p>每次需要创建连接时, 首先申请一个连接, 如果已经超过了一定数量, 则请求被驳回, 也就是不能创建新连接, 从而达到了限制连接数量的目的</p>
+<h3 id="未来计划">未来计划</h3>
 
-<h3 id="数据库断线重连">数据库断线重连</h3>
-
-<p>数据库需要重启时, 不需要要重新启动应用.</p>
-
-<p>当操作数据库失败时, 启动之前创建的连接的刷新流程</p>
-
-<h2 id="使用方法">使用方法</h2>
-
-<p>参照该库提供的<a href="https://github.com/ssor/mongopool/blob/master/example/main.go">例子</a></p>
-
-<h1 id="支持事务的连接池">支持事务的连接池</h1>
-
-<p>Mongo 本身不支持事务, 但是通过利用 Mongo 本身的一些特性, 可以使其支持简单的事务处理. 这是一个<a href="https://github.com/ssor/mongo_pool_txn">应用于生产环境的库</a>, 敬请参考</p>
-
-<h1 id="额外的开源计划">额外的开源计划</h1>
-
-<p>对于具体如何解决之上, 之后会考虑开源一个实用的实例, 敬请期待</p>
+<ul>
+<li>用户消息的持久化</li>
+<li>用户群在节点间迁移, 消息自动同步</li>
+<li>跳出聊天的范畴, 成为一个数据传输管道</li>
+</ul>
 		</div>
 		
 <div class="entry-tags clearfix">
 	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="m4.73135 3.3795002q0-.5597-.39604-.9557-.39604-.3961-.95577-.3961-.55974 0-.95578.3961-.39604.396-.39604.9557 0 .5598.39604.9558.39604.3961.95578.3961.55973 0 .95577-.3961.39604-.396.39604-.9558zm11.26865 6.0832q0 .5596998-.39076.9504998l-5.18548 5.196q-.41188.3908-.9610504.3908-.55974 0-.9505-.3908l-7.5511496-7.5616998q-.40132-.3907-.68119-1.0666-.27987-.6759-.27987-1.2357v-4.3934q0-.54920004.40132-.95050004.40132-.4013.9505-.4013h4.39339q.55974 0 1.23565.2799.67591.2798 1.07723.6812l7.55115 7.54060004q.39076.4118.39076.961z"/></svg>
 	<ul>
-		<li><a href="/tags/%E5%BA%93/" rel="tag">库</a></li>
-		<li><a href="/tags/mongo/" rel="tag">Mongo</a></li>
+		<li><a href="/tags/%E6%9E%B6%E6%9E%84/" rel="tag">架构</a></li>
 		
 	</ul>
 </div>
@@ -172,11 +182,11 @@
 <nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
     
     <div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
-        <a href="http://ssor.github.io/post/architechure_design_dyxsb/" rel="prev"><span>«Previous</span><p>小书包系统架构演进</p></a>
+        <a href="http://ssor.github.io/post/how_to_use_consul/" rel="prev"><span>«Previous</span><p>Consul在服务发现中的应用</p></a>
     </div>
       
     <div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
-        <a href="http://ssor.github.io/post/do_not_use_logic_flow_chart/" rel="next"><span>Next»</span><p>不用逻辑流程图交流思想</p></a>
+        <a href="http://ssor.github.io/post/how_to_meditation/" rel="next"><span>Next»</span><p>如何冥想</p></a>
     </div>
      
 </nav>

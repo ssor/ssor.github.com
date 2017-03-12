@@ -9,20 +9,36 @@
     <atom:link href="http://ssor.github.io/tags/%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>一个Mongo连接池库的介绍</title>
+      <title>Mongo 数据库的合理使用</title>
       <link>http://ssor.github.io/post/rebuild_a_mongo_pool/</link>
       <pubDate>Sat, 11 Feb 2017 00:00:00 +0000</pubDate>
       
       <guid>http://ssor.github.io/post/rebuild_a_mongo_pool/</guid>
-      <description>&lt;p&gt;自己写了一个Mongo连接池, 已用在生产中, 算是重复制造轮子&lt;/p&gt;
+      <description>&lt;p&gt;如何防止 Mongo 数据库因为连接数过高导致异常
+&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
+&lt;h1 id=&#34;思路&#34;&gt;思路&lt;/h1&gt;
 
-&lt;h2 id=&#34;为什么用连接池&#34;&gt;为什么用连接池&lt;/h2&gt;
+&lt;p&gt;防止 Mongo 连接数过高需要解决两个问题:
+1. 如何限制应用使用的连接数
+2. 应用如何合理使用有限的连接&lt;/p&gt;
 
-&lt;p&gt;连接 Mongo 时, 如果连接太多, 会导致数据库因并发连接太多而崩溃; 如果 Mongo 采用了 Primary 和 Secondary 模式, 会导致各个实例的角色不断转换, 从而导致数据不停的在各个实例之间同步, 不仅造成了服务器的负担, 而且导致数据库出错的概率急剧增大, 甚至导致整个系统的运行出错.&lt;/p&gt;
+&lt;p&gt;对于第一个问题, 现在的处理方案是使用连接池, 在连接池内设定最高数量的连接, 重复利用而不随意增多, 从而从整体上保证了连接的数量&lt;/p&gt;
 
-&lt;p&gt;为了解决这个问题, 就要限制各个应用连接 Mongo 的连接数量.&lt;/p&gt;
+&lt;p&gt;但是, 如果之前的应用中使用连接的方式根本没有考虑连接资源有限的话, 改造起来相对麻烦一些. 很多的应用对连接数使用数量来源于业务访问量, 新增一个访问量, 则简单的新创建一个连接, 等于将业务的访问压力转嫁到数据库上, 为系统的稳定埋下了隐患. 因此, 对于应用内使用有限连接的方式, 从两个角度解决:
+1. 强制使用有限连接, 如果因为连接数暂时不够导致业务无法及时处理, 将业务推迟, 由业务发起方重新请求
+2. 对于无法推迟的业务处理, 将请求缓存, 使用有限连接排队处理请求&lt;/p&gt;
+
+&lt;h1 id=&#34;基本连接池&#34;&gt;基本连接池&lt;/h1&gt;
+
+&lt;h2 id=&#34;连接池的好处&#34;&gt;连接池的好处&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;连接 Mongo 时, 如果连接太多, 会导致数据库因并发连接太多而崩溃;&lt;/li&gt;
+&lt;li&gt;如果 Mongo 采用了 Primary 和 Secondary 模式, 会导致各个实例的角色不断转换, 从而导致数据不停的在各个实例之间同步, 不仅造成了服务器的负担, 而且导致数据库出错的概率急剧增大, 甚至导致整个系统的运行出错.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;为了解决这个问题, 就要限制各个应用连接 Mongo 的连接数量, 应用于&lt;a href=&#34;https://github.com/ssor/mongopool&#34;&gt;生产环境的库&lt;/a&gt;, 基于 Go 开发&lt;/p&gt;
 
 &lt;h2 id=&#34;支持特性&#34;&gt;支持特性&lt;/h2&gt;
 
@@ -57,7 +73,15 @@
 
 &lt;h2 id=&#34;使用方法&#34;&gt;使用方法&lt;/h2&gt;
 
-&lt;p&gt;参照该库提供的&lt;a href=&#34;https://github.com/ssor/mongopool/blob/master/example/main.go&#34;&gt;例子&lt;/a&gt;&lt;/p&gt;</description>
+&lt;p&gt;参照该库提供的&lt;a href=&#34;https://github.com/ssor/mongopool/blob/master/example/main.go&#34;&gt;例子&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;支持事务的连接池&#34;&gt;支持事务的连接池&lt;/h1&gt;
+
+&lt;p&gt;Mongo 本身不支持事务, 但是通过利用 Mongo 本身的一些特性, 可以使其支持简单的事务处理. 这是一个&lt;a href=&#34;https://github.com/ssor/mongo_pool_txn&#34;&gt;应用于生产环境的库&lt;/a&gt;, 敬请参考&lt;/p&gt;
+
+&lt;h1 id=&#34;额外的开源计划&#34;&gt;额外的开源计划&lt;/h1&gt;
+
+&lt;p&gt;对于具体如何解决之上, 之后会考虑开源一个实用的实例, 敬请期待&lt;/p&gt;</description>
     </item>
     
   </channel>

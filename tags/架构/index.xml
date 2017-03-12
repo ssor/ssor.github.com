@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>技术 on 我思故我在</title>
-    <link>http://ssor.github.io/categories/%E6%8A%80%E6%9C%AF/index.xml</link>
-    <description>Recent content in 技术 on 我思故我在</description>
+    <title>架构 on 我思故我在</title>
+    <link>http://ssor.github.io/tags/%E6%9E%B6%E6%9E%84/index.xml</link>
+    <description>Recent content in 架构 on 我思故我在</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://ssor.github.io/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://ssor.github.io/tags/%E6%9E%B6%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>小书包系统架构演进</title>
@@ -214,208 +214,6 @@
     </item>
     
     <item>
-      <title>Mongo 数据库的合理使用</title>
-      <link>http://ssor.github.io/post/rebuild_a_mongo_pool/</link>
-      <pubDate>Sat, 11 Feb 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://ssor.github.io/post/rebuild_a_mongo_pool/</guid>
-      <description>&lt;p&gt;如何防止 Mongo 数据库因为连接数过高导致异常
-&lt;/p&gt;
-
-&lt;h1 id=&#34;思路&#34;&gt;思路&lt;/h1&gt;
-
-&lt;p&gt;防止 Mongo 连接数过高需要解决两个问题:
-1. 如何限制应用使用的连接数
-2. 应用如何合理使用有限的连接&lt;/p&gt;
-
-&lt;p&gt;对于第一个问题, 现在的处理方案是使用连接池, 在连接池内设定最高数量的连接, 重复利用而不随意增多, 从而从整体上保证了连接的数量&lt;/p&gt;
-
-&lt;p&gt;但是, 如果之前的应用中使用连接的方式根本没有考虑连接资源有限的话, 改造起来相对麻烦一些. 很多的应用对连接数使用数量来源于业务访问量, 新增一个访问量, 则简单的新创建一个连接, 等于将业务的访问压力转嫁到数据库上, 为系统的稳定埋下了隐患. 因此, 对于应用内使用有限连接的方式, 从两个角度解决:
-1. 强制使用有限连接, 如果因为连接数暂时不够导致业务无法及时处理, 将业务推迟, 由业务发起方重新请求
-2. 对于无法推迟的业务处理, 将请求缓存, 使用有限连接排队处理请求&lt;/p&gt;
-
-&lt;h1 id=&#34;基本连接池&#34;&gt;基本连接池&lt;/h1&gt;
-
-&lt;h2 id=&#34;连接池的好处&#34;&gt;连接池的好处&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;连接 Mongo 时, 如果连接太多, 会导致数据库因并发连接太多而崩溃;&lt;/li&gt;
-&lt;li&gt;如果 Mongo 采用了 Primary 和 Secondary 模式, 会导致各个实例的角色不断转换, 从而导致数据不停的在各个实例之间同步, 不仅造成了服务器的负担, 而且导致数据库出错的概率急剧增大, 甚至导致整个系统的运行出错.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;为了解决这个问题, 就要限制各个应用连接 Mongo 的连接数量, 应用于&lt;a href=&#34;https://github.com/ssor/mongopool&#34;&gt;生产环境的库&lt;/a&gt;, 基于 Go 开发&lt;/p&gt;
-
-&lt;h2 id=&#34;支持特性&#34;&gt;支持特性&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;限制了应用并发连接数量&lt;/li&gt;
-&lt;li&gt;数据库断线自动重连&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;如何查看连接数量&#34;&gt;如何查看连接数量&lt;/h2&gt;
-
-&lt;p&gt;linux :&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo netstat -apn | grep 27107
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;macOS&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo lsof -nP -iTCP  | grep mongo
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;连接池原理&#34;&gt;连接池原理&lt;/h2&gt;
-
-&lt;h3 id=&#34;数量限制&#34;&gt;数量限制&lt;/h3&gt;
-
-&lt;p&gt;每次需要创建连接时, 首先申请一个连接, 如果已经超过了一定数量, 则请求被驳回, 也就是不能创建新连接, 从而达到了限制连接数量的目的&lt;/p&gt;
-
-&lt;h3 id=&#34;数据库断线重连&#34;&gt;数据库断线重连&lt;/h3&gt;
-
-&lt;p&gt;数据库需要重启时, 不需要要重新启动应用.&lt;/p&gt;
-
-&lt;p&gt;当操作数据库失败时, 启动之前创建的连接的刷新流程&lt;/p&gt;
-
-&lt;h2 id=&#34;使用方法&#34;&gt;使用方法&lt;/h2&gt;
-
-&lt;p&gt;参照该库提供的&lt;a href=&#34;https://github.com/ssor/mongopool/blob/master/example/main.go&#34;&gt;例子&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;支持事务的连接池&#34;&gt;支持事务的连接池&lt;/h1&gt;
-
-&lt;p&gt;Mongo 本身不支持事务, 但是通过利用 Mongo 本身的一些特性, 可以使其支持简单的事务处理. 这是一个&lt;a href=&#34;https://github.com/ssor/mongo_pool_txn&#34;&gt;应用于生产环境的库&lt;/a&gt;, 敬请参考&lt;/p&gt;
-
-&lt;h1 id=&#34;额外的开源计划&#34;&gt;额外的开源计划&lt;/h1&gt;
-
-&lt;p&gt;对于具体如何解决之上, 之后会考虑开源一个实用的实例, 敬请期待&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Consul在服务发现中的应用</title>
-      <link>http://ssor.github.io/post/how_to_use_consul/</link>
-      <pubDate>Wed, 08 Feb 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://ssor.github.io/post/how_to_use_consul/</guid>
-      <description>&lt;p&gt;Consul的基本原理及其在服务发现中的使用&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;服务发现&#34;&gt;服务发现&lt;/h2&gt;
-
-&lt;p&gt;服务发现,通俗的讲,就是通过关键字查询特定的服务.&lt;/p&gt;
-
-&lt;h2 id=&#34;服务发现的意义&#34;&gt;服务发现的意义&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;如果服务本身发生了变化, 只需要更新服务即可, 与服务相关的关键字不变, 因此服务的使用者不需要关心该变化&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;服务进行升级后, 如果服务要求的参数不变(平滑升级可以做到), 服务使用者只需要用新的关键字替换之前的关键字即可&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;同一个服务的多个版本可以同时存在, 使用者可以根据需求方便的切换版本&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;consul-是什么&#34;&gt;Consul 是什么&lt;/h2&gt;
-
-&lt;p&gt;Consul是 &lt;a href=&#34;https://www.hashicorp.com/&#34;&gt;HashiCorp&lt;/a&gt;开发的用于服务发现的系统. 它的主要特性有:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;支持通过 DNS 和 HTTP 发现服务&lt;/li&gt;
-&lt;li&gt;提供服务的健康检查&lt;/li&gt;
-&lt;li&gt;键值存储&lt;/li&gt;
-&lt;li&gt;多数据中心&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;通过服务发现的方式为使用者提供服务, 稳定是最重要的考虑因素, Consul 的去中心化的多节点提供稳定的服务. 同时因为健康检查的存在, 可以保证服务的有效性.&lt;/p&gt;
-
-&lt;h2 id=&#34;consul-的部署&#34;&gt;Consul 的部署&lt;/h2&gt;
-
-&lt;h3 id=&#34;说明&#34;&gt;说明&lt;/h3&gt;
-
-&lt;p&gt;每台服务器上至少有一个 Consul 的节点( Agent ), 节点有两种模式: 服务器模式和客户端模式.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;服务器模式提供服务注册和查找等功能, 是 Consul 去中心化的关键节点,推荐至少部署三个节点.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;客户端模式负责转发服务请求到服务器模式的节点.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;由于两种模式的节点负责功能的不同, 可以假设客户端模式的节点是稳定存在的, 而服务器模式的节点可能会异常退出.&lt;/p&gt;
-
-&lt;h3 id=&#34;安装&#34;&gt;安装&lt;/h3&gt;
-
-&lt;p&gt;根据系统&lt;a href=&#34;https://www.consul.io/downloads.html&#34;&gt;下载&lt;/a&gt;合适的版本, 并解压至合适的目录.&lt;/p&gt;
-
-&lt;p&gt;假设有4台服务器, IP分别为 &lt;strong&gt;172.16.1.34&lt;/strong&gt;, &lt;strong&gt;172.16.1.35&lt;/strong&gt;, &lt;strong&gt;172.16.1.37&lt;/strong&gt;, &lt;strong&gt;172.16.1.69&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;我们将在 34, 35, 69 上启动服务器模式节点, 在37上启动客户端模式节点, 启动命令如下:&lt;/p&gt;
-
-&lt;h5 id=&#34;34&#34;&gt;34&lt;/h5&gt;
-
-&lt;pre&gt;&lt;code&gt;./consul agent -server -bootstrap-expect=3 -node=agent34 -data-dir=./ &amp;amp;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h6 id=&#34;35&#34;&gt;35&lt;/h6&gt;
-
-&lt;pre&gt;&lt;code&gt; ./consul agent -server -bootstrap-expect=3 -node=agent35 -data-dir=./ &amp;amp;  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h5 id=&#34;69&#34;&gt;69&lt;/h5&gt;
-
-&lt;pre&gt;&lt;code&gt; ./consul agent -server -bootstrap-expect=3 -node=agent69 -data-dir=./ &amp;amp;  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h5 id=&#34;37&#34;&gt;37&lt;/h5&gt;
-
-&lt;pre&gt;&lt;code&gt; ./consul agent  -node=agent37 -retry-join=172.16.1.35 -data-dir=./ &amp;amp; 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;在35和34服务器上运行&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt; ./consul join 172.16.1.69 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;三个服务器模式节点将选出一个 leader, 服务启动完成.&lt;/p&gt;
-
-&lt;p&gt;查看一下节点状态, 运行命令&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt; ./consul members 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;结果类似如下:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Node     Address           Status  Type    Build  Protocol  DC
-agent34  172.16.1.34:8301  alive   server  0.7.2  2         dc1
-agent35  172.16.1.35:8301  alive   server  0.7.2  2         dc1
-agent37  172.16.1.37:8301  alive   client  0.7.2  2         dc1
-agent69  172.16.1.69:8301  alive   server  0.7.2  2         dc1
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;使用&#34;&gt;使用&lt;/h3&gt;
-
-&lt;h5 id=&#34;使用http-api&#34;&gt;使用HTTP API&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;注册服务 &lt;a href=&#34;https://www.consul.io/docs/agent/http/agent.html#agent_service_register&#34;&gt;/v1/agent/service/register&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;查找服务 &lt;a href=&#34;https://www.consul.io/docs/agent/http/health.html#health_service&#34;&gt;/v1/health/service/&lt;service&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5 id=&#34;使用-sdk&#34;&gt;使用 SDK&lt;/h5&gt;
-
-&lt;p&gt;系统中使用 Consul 需要对其 HTTP API 进行封装, 因此可以直接使用官方封装的 Go 版的 SDK&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;注册服务 参考&lt;a href=&#34;https://github.com/ssor/consul_service_reg/blob/master/main.go&#34;&gt;代码&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;查找服务 参考&lt;a href=&#34;https://github.com/ssor/consul_query_service_example/blob/master/main.go&#34;&gt;代码&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;总结&#34;&gt;总结&lt;/h3&gt;
-
-&lt;p&gt;基本的使用方法介绍完毕, 下一步将对实际工程中的使用问题进行补充&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>小书包在线聊天系统架构演进</title>
       <link>http://ssor.github.io/post/architechure_desigin_of_chat/</link>
       <pubDate>Wed, 05 Oct 2016 00:00:00 +0000</pubDate>
@@ -499,40 +297,6 @@ agent69  172.16.1.69:8301  alive   server  0.7.2  2         dc1
 &lt;li&gt;用户群在节点间迁移, 消息自动同步&lt;/li&gt;
 &lt;li&gt;跳出聊天的范畴, 成为一个数据传输管道&lt;/li&gt;
 &lt;/ul&gt;</description>
-    </item>
-    
-    <item>
-      <title>后台开发选择了 Go 语言</title>
-      <link>http://ssor.github.io/post/why_use_golang_for_backend/</link>
-      <pubDate>Mon, 11 Apr 2016 00:00:00 +0000</pubDate>
-      
-      <guid>http://ssor.github.io/post/why_use_golang_for_backend/</guid>
-      <description>&lt;p&gt;经过认真思考, 还是选择了 Go 作为主力开发语言
-&lt;/p&gt;
-
-&lt;p&gt;后台开发语言的可选项很多, 最没有错误的选择是 Java, 还有 JVM 平台的其它言语 Scala, closure也有大牛在用, 尽管如此, 这些语言各自存在着不同的问题. 与此同时, 也有很多的新语言不断涌现, 试图解决之前语言在开发中遇到的问题. 新语言的问题在于尚未经过时间的检验, 对于产品的开发可能存在风险, 因此需要在风险和新语言的特性之前做出权衡. 我们遇到的是 Go 语言与其它语言.&lt;/p&gt;
-
-&lt;h2 id=&#34;原因&#34;&gt;原因&lt;/h2&gt;
-
-&lt;h3 id=&#34;开源&#34;&gt;开源&lt;/h3&gt;
-
-&lt;p&gt;一定要选择开源的编程语言. 不是因为可以自己往语言里加自己想要的特性, 而是因为, 无论在什么情况下, 不会突然发生语言无人维护的情况; 如果官方放弃该语言, 在确实需要的情况下, 可以自行维护, 保证对已开发系统的支持.&lt;/p&gt;
-
-&lt;h3 id=&#34;设计简单&#34;&gt;设计简单&lt;/h3&gt;
-
-&lt;p&gt;代码直观, 没有各种类的理论的设定, 没有各种看起来很有效率的特性, 代码阅读更流畅, 很难产生误解, 易于维护.&lt;/p&gt;
-
-&lt;h3 id=&#34;快速的静态编译&#34;&gt;快速的静态编译&lt;/h3&gt;
-
-&lt;p&gt;在构建复杂的后端系统时, 在当前阶段, 静态编译在消除隐藏问题方面有着很大的优势, 可以减少大量的测试, 保证系统稳定的同时, 极大的提高开发效率.&lt;/p&gt;
-
-&lt;h3 id=&#34;跨平台编译&#34;&gt;跨平台编译&lt;/h3&gt;
-
-&lt;p&gt;系统的部署一直是个很大的问题, 世界上最好的语言 PHP 之所以最好有一部分原因是跨平台, 在 windows 下开发完成后, 直接部署在 linux 服务器上, 表现基本一致. 相比来说, Go 在这方面的优势只大不小. 在 macOS 上开发完成后, 可以直接编译为 linux 上运行的二进制包, 跨平台表现的一致性更强. 同样的系统不需要任何修改就可以跨平台运行, 极大的降低了开发成本.&lt;/p&gt;
-
-&lt;h3 id=&#34;健壮全面的标准库&#34;&gt;健壮全面的标准库&lt;/h3&gt;
-
-&lt;p&gt;Go 的发布同时带来了健壮齐全的标准库, 一般的系统都不需要额外的外部库依赖, 对生态发展的依赖性极低. 标准库的维护和升级兼容性工作由设计者维护, 保证了系统升级时的稳定可靠.&lt;/p&gt;</description>
     </item>
     
   </channel>

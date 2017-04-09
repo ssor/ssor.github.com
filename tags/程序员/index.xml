@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>程序员 on 我思故我在</title>
+    <link>http://ssor.github.io/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/index.xml</link>
+    <description>Recent content in 程序员 on 我思故我在</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="http://ssor.github.io/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>评定程序员等级的几个方面</title>
+      <link>http://ssor.github.io/post/some_keypoint_of_a_good_programmer/</link>
+      <pubDate>Wed, 08 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://ssor.github.io/post/some_keypoint_of_a_good_programmer/</guid>
+      <description>&lt;p&gt;如何评定程序员的等级❓ 应该指导初级程序员向哪个方向努力❓ 就这两个问题提出自己的想法
+&lt;/p&gt;
+
+&lt;h2 id=&#34;出发点&#34;&gt;出发点&lt;/h2&gt;
+
+&lt;p&gt;为了提高系统代码的可维护性和稳定性, 构成系统的代码必须有质量上的要求, 但是评价质量的指标各有各的优点, 仅拣选出部分认为关键的方面, 以供参考.&lt;/p&gt;
+
+&lt;h2 id=&#34;升级指标&#34;&gt;升级指标&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-功能&#34;&gt;1. 功能&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;按照需求,  实现了既定功能&lt;/li&gt;
+&lt;li&gt;设计简单的实现方法, 没有各种奇巧淫技&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;2-函数&#34;&gt;2. 函数&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;函数命名简单清晰&lt;/li&gt;
+&lt;li&gt;函数名与内容匹配&lt;/li&gt;
+&lt;li&gt;每个函数的行数尽量不超过40行&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;3-单元测试&#34;&gt;3. 单元测试&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;每个函数理论上都可以进行单元测试&lt;/li&gt;
+&lt;li&gt;系统的主要逻辑有单元测试覆盖&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;4-系统的模块化&#34;&gt;4. 系统的模块化&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;不同功能的代码文件放在不同的文件夹内&lt;/li&gt;
+&lt;li&gt;系统设计上不同功能的代码内聚在不同的package内&lt;/li&gt;
+&lt;li&gt;整个系统具有明显的抽象层次&lt;/li&gt;
+&lt;li&gt;层次间的关系简单合理&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;5-文档的撰写&#34;&gt;5. 文档的撰写&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;文档说明清晰易懂&lt;/li&gt;
+&lt;li&gt;图文并茂&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;评定方法&#34;&gt;评定方法&lt;/h2&gt;
+
+&lt;p&gt;向尽量多的人展现自己的作品&lt;/p&gt;
+
+&lt;h2 id=&#34;提高的方法&#34;&gt;提高的方法&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;多学多练,&lt;/li&gt;
+&lt;li&gt;多看优秀的代码&lt;/li&gt;
+&lt;li&gt;多与高水平的人一起写代码&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>怎样才能写出绝对的代码</title>
+      <link>http://ssor.github.io/post/make_code_most_beautiful/</link>
+      <pubDate>Sun, 19 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://ssor.github.io/post/make_code_most_beautiful/</guid>
+      <description>&lt;p&gt;怎样写出无可指摘的代码
+&lt;/p&gt;
+
+&lt;h2 id=&#34;什么是绝对的代码&#34;&gt;什么是绝对的代码&lt;/h2&gt;
+
+&lt;p&gt;任何人见到这套代码, 都不会说这个架构设计的不好, 这个代码还可以再优化一下. 最多可以说用另外一套架构可以完成同样的功能, 可以有另外的优点, 但是代价是牺牲当前这套架构的一些优点, 换句话说, 当前的代码实现了指定的功能, 具有某些优点, 已经没法子再改进, 一改进就是另外一套东西了&lt;/p&gt;
+
+&lt;h2 id=&#34;具体方法&#34;&gt;具体方法&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-目标清晰具体&#34;&gt;1. 目标清晰具体&lt;/h3&gt;
+
+&lt;p&gt;目标清晰的意义在于划定功能的边界, 边界确定的清晰, 功能代码就越清晰. 如果目标模棱两可, 那后人维护的时候就会以为某个功能做得不够全面, 而实际上是对功能的理解偏差&lt;/p&gt;
+
+&lt;h3 id=&#34;2-思路简单到极致&#34;&gt;2. 思路简单到极致&lt;/h3&gt;
+
+&lt;p&gt;没有人可以通过将功能变得复杂而使得代码让人无可指摘, 总可以通过添加一些代码实现新的功能. 只有在精简到极致的情况下, 才有可能让人无可再减, 也就无可指摘&lt;/p&gt;
+
+&lt;h3 id=&#34;3-架构清晰&#34;&gt;3. 架构清晰&lt;/h3&gt;
+
+&lt;p&gt;架构清晰的意义在于表现思路的简单. 模块组合简单合理, 没有冗余的模块, , 功能实现层次分明, 具有必须的模块和层次, 没有多余的层次抽象, 每个人都能看得懂, 最简单的做法就是按照当前的思路去实现.&lt;/p&gt;
+
+&lt;h3 id=&#34;4-清晰的函数&#34;&gt;4. 清晰的函数&lt;/h3&gt;
+
+&lt;p&gt;每个函数都是独立的, 每个函数的命名都很清晰, 每个函数的功能都很具体, 函数这些构成系统的细胞都很简单明确, 然后优美的组合成模块, 保证了系统底层的简单干净&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>我的编程理念</title>
+      <link>http://ssor.github.io/post/how_to_program/</link>
+      <pubDate>Wed, 15 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://ssor.github.io/post/how_to_program/</guid>
+      <description>&lt;p&gt;我坚持用什么理念编程
+&lt;/p&gt;
+
+&lt;h2 id=&#34;简述&#34;&gt;简述&lt;/h2&gt;
+
+&lt;p&gt;经过长时间的思考和实践, 我逐渐确立了以数据为核心, 面向概念的编程理念.&lt;/p&gt;
+
+&lt;h2 id=&#34;核心点&#34;&gt;核心点&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;编程是以数据为核心, 是对数据的处理过程&lt;/li&gt;
+&lt;li&gt;功能模型是分层次的, 每一层都是数据的一次转换&lt;/li&gt;
+&lt;li&gt;每层是由一个核心概念和 N 个辅助概念构成的&lt;/li&gt;
+&lt;li&gt;整个系统就是由一层层的转换组成, 数据经过层层转换, 输出需要的结果&lt;/li&gt;
+&lt;li&gt;在每一层中, 每个概念实例的属性都是固定的, 可以更换概念的实例, 但不能改变其属性值&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;说明&#34;&gt;说明&lt;/h2&gt;
+
+&lt;h3 id=&#34;数据作为思考核心&#34;&gt;数据作为思考核心&lt;/h3&gt;
+
+&lt;p&gt;编程需求起步, 需求即一系列的功能组合. 而所谓功能, 无论对于基本的数据处理, 还是网络编程, 都是将原始数据结构转化成需要的数据结构的过程. 意识到这个本质, 就能去繁就简, 直面问题根源, 也不会因为功能负责而产生各种混乱&lt;/p&gt;
+
+&lt;p&gt;因此, 功能明确后, 系统设计第一步就是, 明确功能需求, 确定起始数据结构和最终结果数据结构.&lt;/p&gt;
+
+&lt;h3 id=&#34;分层模型&#34;&gt;分层模型&lt;/h3&gt;
+
+&lt;p&gt;治理污水的过程包括物理处理, 化学处理, 生物处理, 一层层的过滤, 最终流出可以排放到自然的无害水.&lt;/p&gt;
+
+&lt;p&gt;功能的分层就是对数据的一系列转换过程的组合, 每一次都可以认为是一个层次的转换. 在这个认识的基础上, 就可以根据需要设计组合出针对各种功能的分层模型&lt;/p&gt;
+
+&lt;h3 id=&#34;核心概念&#34;&gt;核心概念&lt;/h3&gt;
+
+&lt;p&gt;因为每一层对应一次数据的转换, 转换的过程以一个核心概念来表示, 围绕着概念的是转换过程所需要的参数设定和转换算法.&lt;/p&gt;
+
+&lt;p&gt;对于每一个概念, 与其相关的方法可以使用概念实例所存储的属性值, 但这些属性值不能在使用过程中被改变, 因为一旦改变, 属性值就变成了状态值, 这就极大的降低了程序的可维护性, 也增加了程序出现 bug 的几率.&lt;/p&gt;
+
+&lt;p&gt;对于需要改变的值, 一定要从外部输入, 并且尽量局限在小范围内使用. 同时, 这也意味着, 可以将这些变动提取成一个辅助概念, 将变化封装到辅助概念中, 核心概念的变化就转化成了对辅助概念实例的创建和销毁&lt;/p&gt;
+
+&lt;h2 id=&#34;优点&#34;&gt;优点&lt;/h2&gt;
+
+&lt;p&gt;以上整个思考方法都是围绕着一个出发点进行: 通过抽象, 将问题拆分和独立, 针对每个问题进行深入研究.&lt;/p&gt;
+
+&lt;p&gt;这个出发点符合人脑解决问题的特点. 人脑不善于同时处理很多问题, 但是善于抽象, 将问题通过抽象成类似树形的结构, 通过在每一层次上解决问题, 从而最终解决问题.&lt;/p&gt;
+
+&lt;p&gt;在工程实践上, 按照以上思考方法的代码支持灵活的测试, 保证了代码的较高质量. 最重要的是, 由于最小的点足够小并且对外部的依赖小, 代码会非常清晰, 维护性会非常高.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

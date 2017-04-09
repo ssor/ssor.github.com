@@ -2,8 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://ssor.github.io/post/sleep_and_wakeup_early_is_a_life_style/</loc>
+    <lastmod>2017-04-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ssor.github.io/post/the_open_source_for_company/</loc>
+    <lastmod>2017-03-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ssor.github.io/post/some_keypoint_of_a_good_programmer/</loc>
+    <lastmod>2017-03-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://ssor.github.io/post/architechure_design_dyxsb/</loc>
     <lastmod>2017-03-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ssor.github.io/post/make_code_most_beautiful/</loc>
+    <lastmod>2017-02-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ssor.github.io/post/how_to_program/</loc>
+    <lastmod>2017-02-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -34,6 +59,11 @@
   <url>
     <loc>http://ssor.github.io/post/why_use_golang_for_backend/</loc>
     <lastmod>2016-04-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ssor.github.io/post/secret_of_make_money/</loc>
+    <lastmod>2015-12-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -83,7 +113,7 @@
   
   <url>
     <loc>http://ssor.github.io/post/</loc>
-    <lastmod>2017-03-05T00:00:00+00:00</lastmod>
+    <lastmod>2017-04-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -95,6 +125,12 @@
   
   <url>
     <loc>http://ssor.github.io/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://ssor.github.io/tags/%E4%BA%BA%E7%94%9F/</loc>
+    <lastmod>2017-04-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -117,20 +153,26 @@
   </url>
   
   <url>
+    <loc>http://ssor.github.io/tags/%E5%BC%80%E6%BA%90/</loc>
+    <lastmod>2017-03-14T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://ssor.github.io/categories/%E6%80%9D%E7%B4%A2/</loc>
-    <lastmod>2017-02-10T00:00:00+00:00</lastmod>
+    <lastmod>2017-04-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://ssor.github.io/</loc>
-    <lastmod>2017-03-05T00:00:00+00:00</lastmod>
+    <lastmod>2017-04-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://ssor.github.io/categories/%E6%8A%80%E6%9C%AF/</loc>
-    <lastmod>2017-03-05T00:00:00+00:00</lastmod>
+    <lastmod>2017-03-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -149,6 +191,12 @@
   <url>
     <loc>http://ssor.github.io/tags/%E6%B5%81%E7%A8%8B%E5%9B%BE/</loc>
     <lastmod>2017-02-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://ssor.github.io/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/</loc>
+    <lastmod>2017-03-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -6,8 +6,197 @@
     <description>Recent content in Posts on 我思故我在</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 05 Mar 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 05 Apr 2017 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://ssor.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>早睡早起与人生发展</title>
+      <link>http://ssor.github.io/post/sleep_and_wakeup_early_is_a_life_style/</link>
+      <pubDate>Wed, 05 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://ssor.github.io/post/sleep_and_wakeup_early_is_a_life_style/</guid>
+      <description>&lt;p&gt;早睡早起的人生 style
+&lt;/p&gt;
+
+&lt;p&gt;最近养成了早睡早起的习惯, 晚上十点左右睡, 早晨六点起床, 精神抖擞. 吃早饭, 挤地铁上班, 到公司八点半左右.&lt;/p&gt;
+
+&lt;p&gt;经历了一段时间发现了许多好处&lt;/p&gt;
+
+&lt;h2 id=&#34;思考与写作&#34;&gt;思考与写作&lt;/h2&gt;
+
+&lt;p&gt;公司打卡九点半,  我基本第一个到公司, 所以我有很长安安静静的一个人的时间, 可以对一些疑难问题进行比较深入的思考, 这是除了走路状态和入睡前状态的思考之外, 最能蹦出灵感的状态. 至少一半的博客是在这个时间段完成的.&lt;/p&gt;
+
+&lt;p&gt;博客促进了思考, 记录了自己的发展, 显著的提高了沟通能力, 早睡早起的习惯功不可没&lt;/p&gt;
+
+&lt;h2 id=&#34;职业发展&#34;&gt;职业发展&lt;/h2&gt;
+
+&lt;p&gt;早起要求尽量早睡(我不是一天只睡三四个小时的怪物), 要求我的工作性质尽量没有较晚的应酬, 那就意味着不可能把和大量的人搞好关系作为第一要务, 那我只能靠技术和能力吃饭, 那我应该多思考多学习不断进步. 对于我自己, 研究各种技术本来就是我的兴趣所在, 兴趣和工作两全其美, 人生如此无憾矣.&lt;/p&gt;
+
+&lt;h2 id=&#34;家庭和美&#34;&gt;家庭和美&lt;/h2&gt;
+
+&lt;p&gt;工作的时间都安排在白天, 很少有突发的事情, 那晚上的时间就可以多个家人沟通交流. 和老婆讨论一下互相工作上的烦恼与进步, 评论一下最新的电影, 看着孩子一点点的不断 get 新技能,  顿时有种心灵上的清新&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>提倡公司开源运动</title>
+      <link>http://ssor.github.io/post/the_open_source_for_company/</link>
+      <pubDate>Tue, 14 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://ssor.github.io/post/the_open_source_for_company/</guid>
+      <description>&lt;p&gt;为什么要在公司技术管理上提倡开源, 如何开源
+&lt;/p&gt;
+
+&lt;h2 id=&#34;原因&#34;&gt;原因&lt;/h2&gt;
+
+&lt;p&gt;保证技术公司拥有强劲竞争力的方法是拥有一支高水平的技术团队.  打造这样高水平的团队有几个方法:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;高水平的招聘&lt;/li&gt;
+&lt;li&gt;自行培养&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;第一个方法优点是直观简单,  但也有缺陷:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;代价高昂&lt;/li&gt;
+&lt;li&gt;很难招&lt;/li&gt;
+&lt;li&gt;合作难&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;战略上来说第二种方法几乎没有第一种方法的缺点, 除了时间较长外, 显然更加最合适.&lt;/p&gt;
+
+&lt;p&gt;那么应该如何培养呢? 这里有克服几个问题:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;什么是更好的技术人要客观, 不能几个人说了算, 评价标准必须客观&lt;/li&gt;
+&lt;li&gt;不能敝帚自珍, 多接触圈内的高手才能意识到自己的不足和努力的方向, 才有可能提高自己的技术水平&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;怎么解决这些问题? 从外部请专家? 定期交流? 多参加技术交流大会? 这些方式不仅效率低, 效果也不是很好. 其实最好的方式就是开源.&lt;/p&gt;
+
+&lt;h2 id=&#34;什么是开源&#34;&gt;什么是开源&lt;/h2&gt;
+
+&lt;p&gt;开源不是简单的把自己的代码放到 GitHub 上, 让所有人都可以访问. 开源的目标是和所有人互动.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;把自己的代码整理好, 包括代码和相关文档, 可以让其他人参与进项目本身&lt;/li&gt;
+&lt;li&gt;参与别人的项目, 贡献自己的想法和代码&lt;/li&gt;
+&lt;li&gt;多听取意见, 然后自己决定&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;开源的忧虑&#34;&gt;开源的忧虑&lt;/h2&gt;
+
+&lt;p&gt;开源让很多公司的管理者产生很多忧虑:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;如果代码别人都知道了, 那竞争对手是不是就可以复制我, 然后和我竞争了?&lt;/li&gt;
+&lt;li&gt;系统的漏洞是不是就暴露出来了? 这样会不会影响公司发展?&lt;/li&gt;
+&lt;li&gt;团队搞开源, 放在业务上的精力变少了, 那公司还怎么发展?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;慢慢来解释这些问题.&lt;/p&gt;
+
+&lt;h3 id=&#34;1-代码的开放&#34;&gt;1. 代码的开放&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;如果竞争对手只是把你的系统运转起来就能和你竞争, 那说明你的产品本身竞争力就不强&lt;/li&gt;
+&lt;li&gt;即使没有你的代码, 人家一样和你竞争, 只要你的技术不是独一无二的, 就不存在什么大的门槛.&lt;/li&gt;
+&lt;li&gt;让你时刻意识到公司的竞争力不在几行代码上, 而在产品和服务上, 认真做好产品和服务才是根本&lt;/li&gt;
+&lt;li&gt;如果能吸引到公司外的人贡献代码, 那就等于有人免费为公司工作&lt;/li&gt;
+&lt;li&gt;多个人多一条思路, 系统的功能和性能方面可能有意外的收获&lt;/li&gt;
+&lt;li&gt;多人的参与, 正常情况下, 代码质量会更高&lt;/li&gt;
+&lt;li&gt;如果有人离职了, 从代码贡献者里面直接找一个替代&lt;/li&gt;
+&lt;li&gt;发现有人对部分代码特别感兴趣, 直接招聘他进公司&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;2-为系统漏洞付出的代价更小&#34;&gt;2. 为系统漏洞付出的代价更小&lt;/h3&gt;
+
+&lt;p&gt;如果系统本身存在漏洞, 黑客迟早会抓住这个机会. 如果能因为开放代码使得有人能提前提出这个漏洞, 最终的损失会更小&lt;/p&gt;
+
+&lt;h3 id=&#34;3-业务更高效&#34;&gt;3. 业务更高效&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;团队要和更多人交流, 必须水平要高, 逼迫团队不断提高技术水平&lt;/li&gt;
+&lt;li&gt;团队水平提高, 完成同样工作的时间缩短, 出错概率降低, 质量反而提高&lt;/li&gt;
+&lt;li&gt;团队更快乐, 共有技术氛围, 团队更稳定&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;如何开源起来&#34;&gt;如何开源起来&lt;/h2&gt;
+
+&lt;h3 id=&#34;尽量的开源纯技术方面的代码&#34;&gt;尽量的开源纯技术方面的代码&lt;/h3&gt;
+
+&lt;p&gt;将业务无关的代码整理成清晰的模块和项目, 写好必要的说明文档, 放到 GitHub 上&lt;/p&gt;
+
+&lt;h3 id=&#34;为使用的开源代码贡献代码&#34;&gt;为使用的开源代码贡献代码&lt;/h3&gt;
+
+&lt;p&gt;如果使用的开源代码缺少自己需要的功能, 或者使用过程中发现 Bug 存在, 将功能代码添加进去, 或者修改 bug, 发 PR 给代码 owner&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>评定程序员等级的几个方面</title>
+      <link>http://ssor.github.io/post/some_keypoint_of_a_good_programmer/</link>
+      <pubDate>Wed, 08 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://ssor.github.io/post/some_keypoint_of_a_good_programmer/</guid>
+      <description>&lt;p&gt;如何评定程序员的等级❓ 应该指导初级程序员向哪个方向努力❓ 就这两个问题提出自己的想法
+&lt;/p&gt;
+
+&lt;h2 id=&#34;出发点&#34;&gt;出发点&lt;/h2&gt;
+
+&lt;p&gt;为了提高系统代码的可维护性和稳定性, 构成系统的代码必须有质量上的要求, 但是评价质量的指标各有各的优点, 仅拣选出部分认为关键的方面, 以供参考.&lt;/p&gt;
+
+&lt;h2 id=&#34;升级指标&#34;&gt;升级指标&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-功能&#34;&gt;1. 功能&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;按照需求,  实现了既定功能&lt;/li&gt;
+&lt;li&gt;设计简单的实现方法, 没有各种奇巧淫技&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;2-函数&#34;&gt;2. 函数&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;函数命名简单清晰&lt;/li&gt;
+&lt;li&gt;函数名与内容匹配&lt;/li&gt;
+&lt;li&gt;每个函数的行数尽量不超过40行&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;3-单元测试&#34;&gt;3. 单元测试&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;每个函数理论上都可以进行单元测试&lt;/li&gt;
+&lt;li&gt;系统的主要逻辑有单元测试覆盖&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;4-系统的模块化&#34;&gt;4. 系统的模块化&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;不同功能的代码文件放在不同的文件夹内&lt;/li&gt;
+&lt;li&gt;系统设计上不同功能的代码内聚在不同的package内&lt;/li&gt;
+&lt;li&gt;整个系统具有明显的抽象层次&lt;/li&gt;
+&lt;li&gt;层次间的关系简单合理&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;5-文档的撰写&#34;&gt;5. 文档的撰写&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;文档说明清晰易懂&lt;/li&gt;
+&lt;li&gt;图文并茂&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;评定方法&#34;&gt;评定方法&lt;/h2&gt;
+
+&lt;p&gt;向尽量多的人展现自己的作品&lt;/p&gt;
+
+&lt;h2 id=&#34;提高的方法&#34;&gt;提高的方法&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;多学多练,&lt;/li&gt;
+&lt;li&gt;多看优秀的代码&lt;/li&gt;
+&lt;li&gt;多与高水平的人一起写代码&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
     
     <item>
       <title>小书包系统架构演进</title>
@@ -212,6 +401,92 @@
 &lt;p&gt;经过之前的改进, 整个系统在业务上基本不存在大的问题. 随着系统的增大, 和第三方资源的对接成为主要考虑的方向, 不仅包括接入第三方的数据资源, 也包括开发资源, 如何向第三方开放数据接口, 增大系统的功能扩展能力摆在面前.&lt;/p&gt;
 
 &lt;p&gt;解决思路是整个系统向平台化演进. 将内部的各个模块在现有的业务层和数据层的基础上, 从纵向上进一步细化拆分, 业务层分为基础业务和组合业务, 数据层分为业务数据和基础数据, 每个层次上开放合适的 API服务, 第三方的开发能力在服务基础上, 就可以快速得以实现.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>怎样才能写出绝对的代码</title>
+      <link>http://ssor.github.io/post/make_code_most_beautiful/</link>
+      <pubDate>Sun, 19 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://ssor.github.io/post/make_code_most_beautiful/</guid>
+      <description>&lt;p&gt;怎样写出无可指摘的代码
+&lt;/p&gt;
+
+&lt;h2 id=&#34;什么是绝对的代码&#34;&gt;什么是绝对的代码&lt;/h2&gt;
+
+&lt;p&gt;任何人见到这套代码, 都不会说这个架构设计的不好, 这个代码还可以再优化一下. 最多可以说用另外一套架构可以完成同样的功能, 可以有另外的优点, 但是代价是牺牲当前这套架构的一些优点, 换句话说, 当前的代码实现了指定的功能, 具有某些优点, 已经没法子再改进, 一改进就是另外一套东西了&lt;/p&gt;
+
+&lt;h2 id=&#34;具体方法&#34;&gt;具体方法&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-目标清晰具体&#34;&gt;1. 目标清晰具体&lt;/h3&gt;
+
+&lt;p&gt;目标清晰的意义在于划定功能的边界, 边界确定的清晰, 功能代码就越清晰. 如果目标模棱两可, 那后人维护的时候就会以为某个功能做得不够全面, 而实际上是对功能的理解偏差&lt;/p&gt;
+
+&lt;h3 id=&#34;2-思路简单到极致&#34;&gt;2. 思路简单到极致&lt;/h3&gt;
+
+&lt;p&gt;没有人可以通过将功能变得复杂而使得代码让人无可指摘, 总可以通过添加一些代码实现新的功能. 只有在精简到极致的情况下, 才有可能让人无可再减, 也就无可指摘&lt;/p&gt;
+
+&lt;h3 id=&#34;3-架构清晰&#34;&gt;3. 架构清晰&lt;/h3&gt;
+
+&lt;p&gt;架构清晰的意义在于表现思路的简单. 模块组合简单合理, 没有冗余的模块, , 功能实现层次分明, 具有必须的模块和层次, 没有多余的层次抽象, 每个人都能看得懂, 最简单的做法就是按照当前的思路去实现.&lt;/p&gt;
+
+&lt;h3 id=&#34;4-清晰的函数&#34;&gt;4. 清晰的函数&lt;/h3&gt;
+
+&lt;p&gt;每个函数都是独立的, 每个函数的命名都很清晰, 每个函数的功能都很具体, 函数这些构成系统的细胞都很简单明确, 然后优美的组合成模块, 保证了系统底层的简单干净&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>我的编程理念</title>
+      <link>http://ssor.github.io/post/how_to_program/</link>
+      <pubDate>Wed, 15 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://ssor.github.io/post/how_to_program/</guid>
+      <description>&lt;p&gt;我坚持用什么理念编程
+&lt;/p&gt;
+
+&lt;h2 id=&#34;简述&#34;&gt;简述&lt;/h2&gt;
+
+&lt;p&gt;经过长时间的思考和实践, 我逐渐确立了以数据为核心, 面向概念的编程理念.&lt;/p&gt;
+
+&lt;h2 id=&#34;核心点&#34;&gt;核心点&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;编程是以数据为核心, 是对数据的处理过程&lt;/li&gt;
+&lt;li&gt;功能模型是分层次的, 每一层都是数据的一次转换&lt;/li&gt;
+&lt;li&gt;每层是由一个核心概念和 N 个辅助概念构成的&lt;/li&gt;
+&lt;li&gt;整个系统就是由一层层的转换组成, 数据经过层层转换, 输出需要的结果&lt;/li&gt;
+&lt;li&gt;在每一层中, 每个概念实例的属性都是固定的, 可以更换概念的实例, 但不能改变其属性值&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;说明&#34;&gt;说明&lt;/h2&gt;
+
+&lt;h3 id=&#34;数据作为思考核心&#34;&gt;数据作为思考核心&lt;/h3&gt;
+
+&lt;p&gt;编程需求起步, 需求即一系列的功能组合. 而所谓功能, 无论对于基本的数据处理, 还是网络编程, 都是将原始数据结构转化成需要的数据结构的过程. 意识到这个本质, 就能去繁就简, 直面问题根源, 也不会因为功能负责而产生各种混乱&lt;/p&gt;
+
+&lt;p&gt;因此, 功能明确后, 系统设计第一步就是, 明确功能需求, 确定起始数据结构和最终结果数据结构.&lt;/p&gt;
+
+&lt;h3 id=&#34;分层模型&#34;&gt;分层模型&lt;/h3&gt;
+
+&lt;p&gt;治理污水的过程包括物理处理, 化学处理, 生物处理, 一层层的过滤, 最终流出可以排放到自然的无害水.&lt;/p&gt;
+
+&lt;p&gt;功能的分层就是对数据的一系列转换过程的组合, 每一次都可以认为是一个层次的转换. 在这个认识的基础上, 就可以根据需要设计组合出针对各种功能的分层模型&lt;/p&gt;
+
+&lt;h3 id=&#34;核心概念&#34;&gt;核心概念&lt;/h3&gt;
+
+&lt;p&gt;因为每一层对应一次数据的转换, 转换的过程以一个核心概念来表示, 围绕着概念的是转换过程所需要的参数设定和转换算法.&lt;/p&gt;
+
+&lt;p&gt;对于每一个概念, 与其相关的方法可以使用概念实例所存储的属性值, 但这些属性值不能在使用过程中被改变, 因为一旦改变, 属性值就变成了状态值, 这就极大的降低了程序的可维护性, 也增加了程序出现 bug 的几率.&lt;/p&gt;
+
+&lt;p&gt;对于需要改变的值, 一定要从外部输入, 并且尽量局限在小范围内使用. 同时, 这也意味着, 可以将这些变动提取成一个辅助概念, 将变化封装到辅助概念中, 核心概念的变化就转化成了对辅助概念实例的创建和销毁&lt;/p&gt;
+
+&lt;h2 id=&#34;优点&#34;&gt;优点&lt;/h2&gt;
+
+&lt;p&gt;以上整个思考方法都是围绕着一个出发点进行: 通过抽象, 将问题拆分和独立, 针对每个问题进行深入研究.&lt;/p&gt;
+
+&lt;p&gt;这个出发点符合人脑解决问题的特点. 人脑不善于同时处理很多问题, 但是善于抽象, 将问题通过抽象成类似树形的结构, 通过在每一层次上解决问题, 从而最终解决问题.&lt;/p&gt;
+
+&lt;p&gt;在工程实践上, 按照以上思考方法的代码支持灵活的测试, 保证了代码的较高质量. 最重要的是, 由于最小的点足够小并且对外部的依赖小, 代码会非常清晰, 维护性会非常高.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -657,6 +932,57 @@ agent69  172.16.1.69:8301  alive   server  0.7.2  2         dc1
 &lt;h3 id=&#34;健壮全面的标准库&#34;&gt;健壮全面的标准库&lt;/h3&gt;
 
 &lt;p&gt;Go 的发布同时带来了健壮齐全的标准库, 一般的系统都不需要额外的外部库依赖, 对生态发展的依赖性极低. 标准库的维护和升级兼容性工作由设计者维护, 保证了系统升级时的稳定可靠.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>赚取财富的秘密</title>
+      <link>http://ssor.github.io/post/secret_of_make_money/</link>
+      <pubDate>Tue, 15 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://ssor.github.io/post/secret_of_make_money/</guid>
+      <description>&lt;p&gt;怎么赚钱？
+&lt;/p&gt;
+
+&lt;h2 id=&#34;基本原理&#34;&gt;基本原理&lt;/h2&gt;
+
+&lt;p&gt;财富的获取是通过交换实现的, 必须生产出能够用于交换的产品, 并成功进行了交换.&lt;/p&gt;
+
+&lt;p&gt;在基于某产品的交换模式发展过程中, 可能会产生各种复杂的表现形态, 但是核心的指标只有两个: 单价和数量.&lt;/p&gt;
+
+&lt;p&gt;根据产品的特性, 由这两个指标衍生出重要的商业模式多种多样, 一般有两个极端: 偏重单价和偏重数量&lt;/p&gt;
+
+&lt;h2 id=&#34;两种模式&#34;&gt;两种模式&lt;/h2&gt;
+
+&lt;h3 id=&#34;单价高-数量少&#34;&gt;单价高, 数量少&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;适合不能低成本复制的产品&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;数量多-单价低&#34;&gt;数量多, 单价低&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;适合能够低成本复制的产品&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;其余各种模式在这两种模式之间徘徊&lt;/p&gt;
+
+&lt;h2 id=&#34;核心&#34;&gt;核心&lt;/h2&gt;
+
+&lt;p&gt;能够获取利润的种子, 也就是能够用于交换的产品, 然后乘上数量&lt;/p&gt;
+
+&lt;p&gt;前者是1, 后者是 0. 没有1, 多少个0都是0; 有了1, 后面每添加一个0, 就高一个数量级&lt;/p&gt;
+
+&lt;h2 id=&#34;寻找那个1&#34;&gt;寻找那个1&lt;/h2&gt;
+
+&lt;p&gt;研究现实的需求, 设计能够满足需求的产品&lt;/p&gt;
+
+&lt;h2 id=&#34;增大数量级&#34;&gt;增大数量级&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;为产品的批量低成本复制寻找方法&lt;/li&gt;
+&lt;li&gt;找到产品大量推广的市场&lt;/li&gt;
+&lt;/ol&gt;</description>
     </item>
     
     <item>
